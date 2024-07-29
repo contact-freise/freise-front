@@ -1,0 +1,10 @@
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let activity of activities$ | async">
+        <a (click)="userIdClick(activity)">
+            <img class="pp" src="freise.png" alt="Profile Picture" width="50" height="50">
+            {{ activity.username }}
+        </a>
+        <div [innerHTML]="activity.action.name"></div>
+        <small>{{ activity.timestamp | date:'medium' }}</small>
+    </li>
+</ul>
