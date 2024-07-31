@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { appImports } from '../../app.config';
-import { finalize, Observable, of, take } from 'rxjs';
+import { finalize, Observable, of, take, tap } from 'rxjs';
 import { ActivityService } from '../../services/activity.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ActivitiesComponent } from '../_lib/activities.component';
@@ -35,7 +35,9 @@ export class ProfileComponent implements OnInit {
     this.isLoading = true;
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userId = params['userId'];
-      this.user$ = this._userService.getByUserId(this.userId);
+      this.user$ = this._userService.getByUserId(this.userId).pipe(
+        tap(user => this.avatarUrl$ = of({ downloadUrl: user.avatarUrl }))
+      );
       this.activities$ = this._activityService.getByUserId(this.userId).pipe(
         finalize(() => this.isLoading = false)
       );

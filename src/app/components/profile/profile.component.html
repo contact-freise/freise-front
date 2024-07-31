@@ -4,7 +4,7 @@
             <img class="pp" [src]="avatarUrl.downloadUrl" alt="Profile Picture" width="200" height="200">
         </ng-container>
 
-        <input type="file" class="file-upload" (change)="onFileChange($event)">
+        <input type="file" class="avatar-upload" accept="image/*" (change)="onFileChange($event)">
         <h1>{{user.username}}</h1>
     </div>
     <h2>Activities</h2>

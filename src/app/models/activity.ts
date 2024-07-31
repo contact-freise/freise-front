@@ -1,4 +1,6 @@
+import { User } from "./user";
+
 export interface Activity {
-    username: string;
-    userId: string;
+    _id: string;
+    userId: User;
 }

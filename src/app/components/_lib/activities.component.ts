@@ -27,11 +27,11 @@ export class ActivitiesComponent implements OnInit {
     userIdClick(activity: Activity) {
         this._activityService.post({
             action: {
-                name: `visited user <a href='user/${activity.userId}'>${activity.username}</a> 👀`,
+                name: `visited user <a href='user/${activity.userId._id}'>${activity.userId.username}</a> 👀`,
                 activityType: 'visitUser',
             },
         }).pipe(take(1)).subscribe();
-        this.router.navigateByUrl(`/user/${activity.userId}`);
+        this.router.navigateByUrl(`/user/${activity.userId._id}`);
     }
 
 }

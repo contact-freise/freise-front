@@ -15,10 +15,13 @@ export class ActivityService {
         private _authService: AuthService,
         private router: Router,
     ) {
-        this.router.events.subscribe(event => {
+
+        // Log the user's navigation activity
+        /*this.router.events.subscribe(event => {
             if (this._authService.isLoggedIn() &&
                 event instanceof NavigationEnd &&
                 event.url !== '/login' && event.url !== '/register') {
+                
                 this.post({
                     action: {
                         name: `accessed ` + event.url + ` 🤫`,
@@ -26,7 +29,7 @@ export class ActivityService {
                     },
                 }).pipe(take(1)).subscribe();
             }
-        })
+        })*/
     }
 
     get(): Observable<any> {

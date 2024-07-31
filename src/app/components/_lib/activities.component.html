@@ -1,10 +1,11 @@
 <ul class="list-group">
     <li class="list-group-item" *ngFor="let activity of activities$ | async">
+        <img (click)="userIdClick(activity)" class="pp" [src]="activity.userId?.avatarUrl ?? 'freise.png'" alt="Profile Picture" width="60" height="60">
         <a (click)="userIdClick(activity)">
-            <img class="pp" src="freise.png" alt="Profile Picture" width="50" height="50">
-            {{ activity.username }}
+            {{ activity.userId?.username }}
         </a>
+        
         <div [innerHTML]="activity.action.name"></div>
-        <small>{{ activity.timestamp | date:'medium' }}</small>
+        <small>{{ activity.createdAt | date:'dd-MM-yyyy HH:mm' }}</small>
     </li>
 </ul>

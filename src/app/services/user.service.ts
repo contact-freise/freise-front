@@ -22,6 +22,6 @@ export class UserService {
     updateAvatar(userId: string, file: File): Observable<{ downloadUrl: string }> {
         const formData = new FormData();
         formData.append("file", file);
-        return this.http.post<{ downloadUrl: string }>(`${API_URL}user/${userId}/upload`, formData, this._authService.getHttpOptions());
+        return this.http.post<{ downloadUrl: string }>(`${API_URL}user/${userId}/avatar/upload`, formData, this._authService.getHttpOptions());
     }
 }
