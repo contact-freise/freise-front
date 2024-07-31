@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { appImports } from '../../app.config';
-import { finalize, Observable } from 'rxjs';
+import { finalize, Observable, of, take } from 'rxjs';
 import { ActivityService } from '../../services/activity.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ActivitiesComponent } from '../_lib/activities.component';
@@ -17,6 +17,7 @@ import { User } from '../../models/user';
 export class ProfileComponent implements OnInit {
 
   userId: string;
+  avatarUrl$: Observable<{ downloadUrl: string }> = of({ downloadUrl: 'freise.png' });
   activities = [];
   isLoading = false;
 
@@ -39,5 +40,22 @@ export class ProfileComponent implements OnInit {
         finalize(() => this.isLoading = false)
       );
     });
+  }
+
+  onFileChange(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.avatarUrl$ = this._userService.updateAvatar(this.userId, file);
+    };
+  }
+
+  onFollow() {
+    //this._userService.follow(this.userId).subscribe();
+  }
+
+  onUnfollow() {
+    //this._userService.unfollow(this.userId).subscribe();
   }
 }

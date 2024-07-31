@@ -16,7 +16,9 @@ export class ActivityService {
         private router: Router,
     ) {
         this.router.events.subscribe(event => {
-            if (this._authService.isLoggedIn() && event instanceof NavigationEnd) {
+            if (this._authService.isLoggedIn() &&
+                event instanceof NavigationEnd &&
+                event.url !== '/login' && event.url !== '/register') {
                 this.post({
                     action: {
                         name: `accessed ` + event.url + ` 🤫`,

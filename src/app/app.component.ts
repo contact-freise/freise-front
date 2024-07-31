@@ -24,6 +24,14 @@ export class AppComponent implements OnInit {
     if (this.isLoggedIn()) {
       this._authService.user = JSON.parse(localStorage.getItem('user'));
     }
+
+    /*
+    const eventSource = new EventSource('sse');
+    eventSource.onmessage = ({ data }) => {
+      const message = document.createElement('li');
+      message.innerText = 'New message: ' + data;
+      document.body.appendChild(message);
+    }*/
   }
 
   isLoggedIn() {

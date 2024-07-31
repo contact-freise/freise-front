@@ -1,6 +1,10 @@
 <div class="container mt-5">
     <div *ngIf="user$ | async as user" class="profile">
-        <img class="pp" src="freise.png" alt="Profile Picture" width="100" height="100">
+        <ng-container *ngIf="avatarUrl$ | async as avatarUrl">
+            <img class="pp" [src]="avatarUrl.downloadUrl" alt="Profile Picture" width="200" height="200">
+        </ng-container>
+
+        <input type="file" class="file-upload" (change)="onFileChange($event)">
         <h1>{{user.username}}</h1>
     </div>
     <h2>Activities</h2>
