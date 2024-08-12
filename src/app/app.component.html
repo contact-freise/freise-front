@@ -12,7 +12,9 @@
         <a class="nav-link" routerLink="/register">Inscription</a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">
-        <a class="nav-link" [routerLink]="['user', getUserId()]">Profile</a>
+        <a class="nav-link" [routerLink]="['user', getUserId()]">
+          <img *ngIf="user$ | async as user" class="avatar" [src]="user.avatarUrl" alt="Avatar" width="30" height="30">
+        </a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">
         <a class="nav-link" (click)="logout()">Se déconnecter</a>

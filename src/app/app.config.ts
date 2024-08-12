@@ -37,4 +37,5 @@ export const appImports = [
   ToastrModule,
 ];
 
-export const API_URL = 'http://localhost:3000/api/';
+//export const API_URL = 'http://localhost:3000/api/';
+export const API_URL = 'https://freise--freise-c4cfd.us-central1.hosted.app/api/'

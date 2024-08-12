@@ -19,9 +19,9 @@ export class UserService {
         return this.http.get<User>(`${API_URL}user/${userId}`, this._authService.getHttpOptions());
     }
 
-    updateAvatar(userId: string, file: File): Observable<{ downloadUrl: string }> {
+    updateUserImgUrl(userId: string, imgUrl: 'avatarUrl' | 'backgroundUrl', file: File): Observable<User> {
         const formData = new FormData();
         formData.append("file", file);
-        return this.http.post<{ downloadUrl: string }>(`${API_URL}user/${userId}/avatar/upload`, formData, this._authService.getHttpOptions());
+        return this.http.post<User>(`${API_URL}user/${userId}/${imgUrl}/upload`, formData, this._authService.getHttpOptions());
     }
 }

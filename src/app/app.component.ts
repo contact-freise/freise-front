@@ -3,7 +3,9 @@ import { appImports } from './app.config';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ActivityService } from './services/activity.service';
-import { take } from 'rxjs';
+import { Observable, take } from 'rxjs';
+import { UserService } from './services/user.service';
+import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -14,15 +16,19 @@ import { take } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
+  user$: Observable<User>;
+
   constructor(
     private router: Router,
     private _authService: AuthService,
     private _activityService: ActivityService,
+    private _userService: UserService,
   ) { }
 
   ngOnInit(): void {
     if (this.isLoggedIn()) {
       this._authService.user = JSON.parse(localStorage.getItem('user'));
+      this.user$ = this._userService.getByUserId(this.getUserId());
     }
 
     /*
@@ -40,6 +46,10 @@ export class AppComponent implements OnInit {
 
   getUserId() {
     return this._authService.user._id;
+  }
+
+  getUserAvatarUrl() {
+    return this._authService.user.avatarUrl;
   }
 
   logout() {

@@ -1,10 +1,22 @@
 <div class="container mt-5">
     <div *ngIf="user$ | async as user" class="profile">
-        <ng-container *ngIf="avatarUrl$ | async as avatarUrl">
-            <img class="pp" [src]="avatarUrl.downloadUrl" alt="Profile Picture" width="200" height="200">
-        </ng-container>
-
-        <input type="file" class="avatar-upload" accept="image/*" (change)="onFileChange($event)">
+        <div class="background-image">
+            <div class="content">
+                <img class="pp" [src]="user.avatarUrl" alt="Profile Picture" width="200" height="200">
+            </div>
+        </div>
+        <img class="background-image" [src]="user.backgroundUrl" alt="Background Picture" height="200">
+        <div class="flex">
+            <!--<button class="btn btn-primary">Edit Profile</button>-->
+            <label for="file-upload-avatartUrl" class="custom-file-upload avatar-upload">
+                Upload Profile Picture
+            </label>
+            <input id="file-upload-avatartUrl" type="file" accept="image/*" (change)="onFileChange($event, 'avatarUrl')" />
+            <label for="file-upload-backgroundUrl" class="custom-file-upload background-upload">
+                Upload Background
+            </label>
+            <input id="file-upload-backgroundUrl" type="file" accept="image/*" (change)="onFileChange($event, 'backgroundUrl')" />
+        </div>
         <h1>{{user.username}}</h1>
     </div>
     <h2>Activities</h2>
