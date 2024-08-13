@@ -1,24 +1,29 @@
 <div class="container mt-5">
-    <div *ngIf="user$ | async as user" class="profile">
-        <div class="background-image">
+    <div *ngIf="user$ | async as user; else loading" class="profile">
+        <div>
             <div class="content">
-                <img class="pp" [src]="user.avatarUrl" alt="Profile Picture" width="200" height="200">
+                <img *ngIf="user.avatarUrl" class="avatarUrl" [src]="user.avatarUrl">
             </div>
         </div>
-        <img class="background-image" [src]="user.backgroundUrl" alt="Background Picture" height="200">
+        <img *ngIf="user.backgroundUrl" class="backgroundUrl" [src]="user.backgroundUrl">
         <div class="flex">
             <!--<button class="btn btn-primary">Edit Profile</button>-->
-            <label for="file-upload-avatartUrl" class="custom-file-upload avatar-upload">
+            <label for="file-upload-avatarUrl" class="profile-file-upload">
                 Photo de profil
             </label>
-            <input id="file-upload-avatartUrl" type="file" accept="image/*" (change)="onFileChange($event, 'avatarUrl')" />
-            <label for="file-upload-backgroundUrl" class="custom-file-upload background-upload">
+            <input id="file-upload-avatarUrl" type="file" accept="image/*"
+                (change)="onFileChange($event, 'avatarUrl')" />
+            <label for="file-upload-backgroundUrl" class="profile-file-upload">
                 Bannière
             </label>
-            <input id="file-upload-backgroundUrl" type="file" accept="image/*" (change)="onFileChange($event, 'backgroundUrl')" />
+            <input id="file-upload-backgroundUrl" type="file" accept="image/*"
+                (change)="onFileChange($event, 'backgroundUrl')" />
         </div>
         <h1>{{user.username}}</h1>
     </div>
+    <ng-template #loading>
+        <div class="spinner"></div>
+    </ng-template>
     <h2>Activité</h2>
     <activities [activities$]="activities$"></activities>
 </div>
