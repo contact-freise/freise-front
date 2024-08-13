@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, take } from 'rxjs';
-import { API_URL } from '../app.config';
 import { AuthService } from './auth.service';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -33,14 +33,14 @@ export class ActivityService {
     }
 
     get(): Observable<any> {
-        return this.http.get(`${API_URL}activity`, this._authService.getHttpOptions());
+        return this.http.get(`${environment.API_URL}/activity`, this._authService.getHttpOptions());
     }
 
     getByUserId(userId: string): Observable<any> {
-        return this.http.get(`${API_URL}activity/${userId}`, this._authService.getHttpOptions());
+        return this.http.get(`${environment.API_URL}/activity/${userId}`, this._authService.getHttpOptions());
     }
 
     post(payload): Observable<any> {
-        return this.http.post(`${API_URL}activity`, payload, this._authService.getHttpOptions());
+        return this.http.post(`${environment.API_URL}/activity`, payload, this._authService.getHttpOptions());
     }
 }

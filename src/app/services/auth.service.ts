@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { API_URL } from '../app.config';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +27,11 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   register(user): Observable<any> {
-    return this.http.post<any>(`${API_URL}user`, user);
+    return this.http.post<any>(`${environment.API_URL}/user`, user);
   }
 
   login(user): Observable<any> {
-    return this.http.post<any>(`${API_URL}user/login`, user);
+    return this.http.post<any>(`${environment.API_URL}/user/login`, user);
   }
 
   isLoggedIn(): boolean {

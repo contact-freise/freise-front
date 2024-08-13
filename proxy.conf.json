@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+      "target": "https://freise-23fdb341d3bb.herokuapp.com/api/",
+      "secure": false,
+      "logLevel": "debug"
+  }
+}

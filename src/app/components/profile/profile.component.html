@@ -9,16 +9,16 @@
         <div class="flex">
             <!--<button class="btn btn-primary">Edit Profile</button>-->
             <label for="file-upload-avatartUrl" class="custom-file-upload avatar-upload">
-                Upload Profile Picture
+                Photo de profil
             </label>
             <input id="file-upload-avatartUrl" type="file" accept="image/*" (change)="onFileChange($event, 'avatarUrl')" />
             <label for="file-upload-backgroundUrl" class="custom-file-upload background-upload">
-                Upload Background
+                Bannière
             </label>
             <input id="file-upload-backgroundUrl" type="file" accept="image/*" (change)="onFileChange($event, 'backgroundUrl')" />
         </div>
         <h1>{{user.username}}</h1>
     </div>
-    <h2>Activities</h2>
+    <h2>Activité</h2>
     <activities [activities$]="activities$"></activities>
 </div>
