@@ -1,0 +1,24 @@
+{
+  "app": {
+    "logo": "🍓",
+    "title": "Freise",
+    "already-registered": "Already registered?",
+    "login": "Connect",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "login": {
+    "welcome": "(Re)Welcome (back) to Freise 🍓",
+    "subtitle": "You didn't return here by accident 😏 And we missed you!",
+    "user": "Username or email",
+    "password": "Password",
+    "submit": "Login to Freise 🚀",
+    "forgot-password": "Forgot your password?",
+    "register": "Not registered yet? Create an account"
+  },
+  "logout": {
+    "title": "Bye bye tho!",
+    "subtitle": "We hope to see you soon 👋",
+    "login": "Reconnect"
+  }
+}

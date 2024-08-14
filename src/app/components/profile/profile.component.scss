@@ -33,19 +33,13 @@ input[type="file"] {
 
 .profile-file-upload {
     display: inline-block;
-    margin: 10px 10px;
-    padding: 10px 20px;
+    margin: 0px 2px;
+    padding: 10px 0px;
     cursor: pointer;
-    background-color: #af4c4c;
-    color: white;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.profile-file-upload:hover {
-    background-color: #b16161;
+    background-color: rgba(53, 53, 53, 0.52);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }
 
 .spinner {
@@ -53,7 +47,7 @@ input[type="file"] {
     height: 80px;
     border: 8px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
-    border-top-color: #3498db;
+    border-top-color: #af4c4c;
     animation: spin 1s ease-in-out infinite;
     margin: 20px auto;
 }

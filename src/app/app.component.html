@@ -1,15 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav *transloco="let t" class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">🍓</a>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" *ngIf="!isLoggedIn()">
-        Déjà membre ?
+        {{ t('app.already-registered') }}
       </li>
       <li class="nav-item" *ngIf="!isLoggedIn()">
-        <a class="nav-link" routerLink="/login">Connexion</a>
+        <a class="nav-link" routerLink="/login">{{ t('app.login') }}</a>
       </li>
       <li class="nav-item" *ngIf="!isLoggedIn()">
-        <a class="nav-link" routerLink="/register">Inscription</a>
+        <a class="nav-link" routerLink="/register">{{ t('app.register') }}</a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">
         <a class="nav-link" [routerLink]="['user', getUserId()]">
@@ -17,7 +17,7 @@
         </a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">
-        <a class="nav-link" (click)="logout()">Se déconnecter</a>
+        <a class="nav-link" (click)="logout()">{{ t('app.logout') }}</a>
       </li>
     </ul>
   </div>

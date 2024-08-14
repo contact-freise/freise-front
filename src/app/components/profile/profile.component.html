@@ -3,19 +3,22 @@
         <div>
             <div class="content">
                 <img *ngIf="user.avatarUrl" class="avatarUrl" [src]="user.avatarUrl">
+                <label for="file-upload-avatarUrl" class="profile-file-upload">
+                    📷
+                </label>
+                <label for="file-upload-backgroundUrl" class="profile-file-upload">
+                    🌅
+                </label>
             </div>
         </div>
         <img *ngIf="user.backgroundUrl" class="backgroundUrl" [src]="user.backgroundUrl">
+        
         <div class="flex">
             <!--<button class="btn btn-primary">Edit Profile</button>-->
-            <label for="file-upload-avatarUrl" class="profile-file-upload">
-                Photo de profil
-            </label>
+            
             <input id="file-upload-avatarUrl" type="file" accept="image/*"
                 (change)="onFileChange($event, 'avatarUrl')" />
-            <label for="file-upload-backgroundUrl" class="profile-file-upload">
-                Bannière
-            </label>
+            
             <input id="file-upload-backgroundUrl" type="file" accept="image/*"
                 (change)="onFileChange($event, 'backgroundUrl')" />
         </div>

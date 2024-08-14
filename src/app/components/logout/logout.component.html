@@ -1,9 +1,10 @@
-<div class="logout">
-    <h1>Allez salut hein ! 👋</h1>
+<div *transloco="let t" class="logout">
+    <h1>{{ t('logout.title') }}</h1>
+    <h2>{{ t('logout.subtitle') }}</h2>
 
     <img #giphy
         src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTA1OXV6bnczbnh6c3gza3BvNjQ3eHRwY2IxbW92cm54MGhwazhiciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KBY0BfYrvAYZQAkUP5/giphy-downsized-large.gif"
         alt="">
     <br>
-    <a routerLink="/login">Se reconnecter</a>
+    <a routerLink="/login">{{ t('logout.login') }}</a>
 </div>
