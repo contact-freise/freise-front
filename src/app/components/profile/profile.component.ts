@@ -6,6 +6,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { ActivitiesComponent } from '../_lib/actvities/activities.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,8 +17,9 @@ import { ActivitiesComponent } from '../_lib/actvities/activities.component';
 })
 export class ProfileComponent implements OnInit {
 
-  userId: string;
+  user: string;
   activities = [];
+  isLoggedUser = false;
   isLoading = false;
 
   user$: Observable<User>;
@@ -26,6 +28,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private _activityService: ActivityService,
     private _userService: UserService,
+    private _authService: AuthService,
     private activatedRoute: ActivatedRoute,
 
   ) { }
@@ -33,9 +36,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.userId = params['userId'];
-      this.user$ = this._userService.getByUserId(this.userId)
-      this.activities$ = this._activityService.getByUserId(this.userId).pipe(
+      this.user = params['user'];
+      this.isLoggedUser = this._authService.user._id === this.user;
+      this.user$ = this._userService.getByUserId(this.user)
+      this.activities$ = this._activityService.getByUserId(this.user).pipe(
         finalize(() => this.isLoading = false)
       );
     });
@@ -46,15 +50,21 @@ export class ProfileComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      this.user$ = this._userService.updateUserImgUrl(this.userId, imgUrl, file);
+      this.user$ = this._userService.updateUserImgUrl(this.user, imgUrl, file);
+      this._activityService.post({
+        action: {
+          name: `updated ${imgUrl.replaceAll('Url', '')} 📸`,
+          activityType: 'updateImg',
+        },
+      }).pipe(take(1)).subscribe()
     };
   }
 
   onFollow() {
-    //this._userService.follow(this.userId).subscribe();
+    //this._userService.follow(this.user).subscribe();
   }
 
   onUnfollow() {
-    //this._userService.unfollow(this.userId).subscribe();
+    //this._userService.unfollow(this.user).subscribe();
   }
 }

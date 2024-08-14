@@ -24,14 +24,14 @@ export class ActivitiesComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    userIdClick(activity: Activity) {
+    userClick(activity: Activity) {
         this._activityService.post({
             action: {
-                name: `visited user <a href='user/${activity.userId._id}'>${activity.userId.username}</a> 👀`,
+                name: `visited user <a href='user/${activity.user._id}'>${activity.user.username}</a> 👀`,
                 activityType: 'visitUser',
             },
         }).pipe(take(1)).subscribe();
-        this.router.navigateByUrl(`/user/${activity.userId._id}`);
+        this.router.navigateByUrl(`/user/${activity.user._id}`);
     }
 
 }

@@ -15,13 +15,13 @@ export class UserService {
         private _authService: AuthService,
     ) { }
 
-    getByUserId(userId: string): Observable<User> {
-        return this.http.get<User>(`${environment.API_URL}/user/${userId}`, this._authService.getHttpOptions());
+    getByUserId(user: string): Observable<User> {
+        return this.http.get<User>(`${environment.API_URL}/user/${user}`, this._authService.getHttpOptions());
     }
 
-    updateUserImgUrl(userId: string, imgUrl: 'avatarUrl' | 'backgroundUrl', file: File): Observable<User> {
+    updateUserImgUrl(user: string, imgUrl: 'avatarUrl' | 'backgroundUrl', file: File): Observable<User> {
         const formData = new FormData();
         formData.append("file", file);
-        return this.http.post<User>(`${environment.API_URL}/user/${userId}/${imgUrl}/upload`, formData, this._authService.getHttpOptions());
+        return this.http.post<User>(`${environment.API_URL}/user/${user}/${imgUrl}/upload`, formData, this._authService.getHttpOptions());
     }
 }

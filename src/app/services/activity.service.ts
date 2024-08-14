@@ -36,8 +36,8 @@ export class ActivityService {
         return this.http.get(`${environment.API_URL}/activity`, this._authService.getHttpOptions());
     }
 
-    getByUserId(userId: string): Observable<any> {
-        return this.http.get(`${environment.API_URL}/activity/${userId}`, this._authService.getHttpOptions());
+    getByUserId(user: string): Observable<any> {
+        return this.http.get(`${environment.API_URL}/activity/${user}`, this._authService.getHttpOptions());
     }
 
     post(payload): Observable<any> {
