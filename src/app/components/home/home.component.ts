@@ -3,7 +3,7 @@ import { appImports } from '../../app.config';
 import { AuthService } from '../../services/auth.service';
 import { ActivityService } from '../../services/activity.service';
 import { finalize } from 'rxjs';
-import { ActivitiesComponent } from '../_lib/activities.component';
+import { ActivitiesComponent } from '../_lib/actvities/activities.component';
 
 @Component({
   selector: 'app-home',

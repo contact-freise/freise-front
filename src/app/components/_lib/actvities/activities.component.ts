@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { appImports } from '../../app.config';
-import { ActivityService } from '../../services/activity.service';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
-import { Activity } from '../../models/activity';
+import { ActivityService } from '../../../services/activity.service';
+import { Activity } from '../../../models/activity';
+import { appImports } from '../../../app.config';
 
 @Component({
     selector: 'activities',

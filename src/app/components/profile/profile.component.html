@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div *transloco="let t" class="container mt-5">
     <div *ngIf="user$ | async as user; else loading" class="profile">
         <div>
             <div class="content">
@@ -27,6 +27,6 @@
     <ng-template #loading>
         <div class="spinner"></div>
     </ng-template>
-    <h2>Activité</h2>
+    <h2>{{ t('profile.activity') }}</h2>
     <activities [activities$]="activities$"></activities>
 </div>

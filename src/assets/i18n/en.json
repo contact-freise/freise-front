@@ -7,6 +7,16 @@
     "register": "Register",
     "logout": "Logout"
   },
+  "register": {
+    "welcome": "Freise can't wait to welcome you 🍓",
+    "subtitle": "But first, let's introduce ourselves 🤝",
+    "user": "Username",
+    "gender": "Gender",
+    "dob": "Date of birth",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Ok, let's go 😎"
+  },
   "login": {
     "welcome": "(Re)Welcome (back) to Freise 🍓",
     "subtitle": "You didn't return here by accident 😏 And we missed you!",
@@ -15,6 +25,12 @@
     "submit": "Login to Freise 🚀",
     "forgot-password": "Forgot your password?",
     "register": "Not registered yet? Create an account"
+  },
+  "home": {
+    "activities": "Latest activities"
+  },
+  "profile": {
+    "activity": "Activity"
   },
   "logout": {
     "title": "Bye bye tho!",

@@ -1,29 +1,29 @@
-<div class="container mt-5">
+<div *transloco="let t" class="container mt-5">
   <div class="register">
-    <h2>Freise a hâte de t'accueillir 🍓</h2>
-    <h3>Mais avant toute chose, les présentations ! 🤝</h3>
+    <h2>{{ t('register.welcome') }}</h2>
+    <h3>{{ t('register.subtitle') }}</h3>
   </div>
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="username">Pseudo</label>
+      <label for="username">{{ t('register.user') }}</label>
       <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" required>
     </div>
     <div class="form-group">
-      <label for="firstname">Genre</label>
+      <label for="firstname">{{ t('register.gender') }}</label>
       <input type="text" class="form-control" id="gender" [(ngModel)]="user.gender" name="gender" required>
     </div>
     <div class="form-group">
-      <label for="birthdate">Date de naissance</label>
+      <label for="birthdate">{{ t('register.dob') }}</label>
       <input type="date" class="form-control" id="dob" [(ngModel)]="user.dob" name="dob" required>
     </div>
     <div class="form-group">
-      <label for="email">Adresse email</label>
+      <label for="email">{{ t('register.email') }}</label>
       <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email" required>
     </div>
     <div class="form-group">
-      <label for="password">Mot de passe</label>
+      <label for="password">{{ t('register.password') }}</label>
       <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password" required>
     </div>
-    <button type="submit" class="btn btn-primary">Allez c'est parti 😎</button>
+    <button type="submit" class="btn btn-primary">{{ t('register.submit') }}</button>
   </form>
 </div>

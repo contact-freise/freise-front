@@ -9,6 +9,7 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideTransloco, TranslocoModule } from '@jsverse/transloco';
 import { TranslocoHttpLoader } from './transloco-loader';
+import { DateAgoPipe } from './components/_pipes/date-ago.pipe';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -51,4 +52,6 @@ export const appImports = [
   RouterLinkActive,
   ToastrModule,
   TranslocoModule,
+
+  DateAgoPipe,
 ];

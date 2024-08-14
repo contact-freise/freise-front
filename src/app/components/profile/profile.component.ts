@@ -3,9 +3,9 @@ import { appImports } from '../../app.config';
 import { finalize, Observable, of, take, tap } from 'rxjs';
 import { ActivityService } from '../../services/activity.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ActivitiesComponent } from '../_lib/activities.component';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
+import { ActivitiesComponent } from '../_lib/actvities/activities.component';
 
 @Component({
   selector: 'app-profile',

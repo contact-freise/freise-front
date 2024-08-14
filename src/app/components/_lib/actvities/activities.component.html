@@ -1,0 +1,16 @@
+<ng-container *transloco="let t">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let activity of activities$ | async">
+            <img (click)="userIdClick(activity)" class="pp" [src]="activity.userId?.avatarUrl" width="60" height="60">
+            <div>
+                <div class="flex">
+                    <a (click)="userIdClick(activity)">
+                        {{ activity.userId?.username }}
+                    </a>
+                    <div [innerHTML]="activity.action.name"></div>
+                </div>
+                <small>{{ activity.createdAt | dateAgo }}</small>
+            </div>
+        </li>
+    </ul>
+</ng-container>

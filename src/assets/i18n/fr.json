@@ -7,6 +7,16 @@
     "register": "Inscription",
     "logout": "Déconnexion"
   },
+  "register": {
+    "welcome": "Freise a hâte de t'accueillir 🍓",
+    "subtitle": "Mais avant toute chose, les présentations ! 🤝",
+    "user": "Pseudo",
+    "gender": "Genre",
+    "dob": "Date de naissance",
+    "email": "Email",
+    "password": "Mot de passe",
+    "submit": "Allez c'est parti 😎"
+  },
   "login": {
     "welcome": "(Re)Bienvenue sur Freise 🍓",
     "subtitle": "Toi, tu n'es pas (re)venu ici par hasard 😏 Et tu nous as manqué !",
@@ -15,6 +25,12 @@
     "submit": "Connexion à Freise 🚀",
     "forgot-password": "Mot de passe oublié ?",
     "register": "Pas encore inscrit ? Crée un compte"
+  },
+  "home": {
+    "activities": "Dernières activités"
+  },
+  "profile": {
+    "activity": "Activité"
   },
   "logout": {
     "title": "Allez salut hein !",
