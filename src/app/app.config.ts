@@ -10,6 +10,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideTransloco, TranslocoModule } from '@jsverse/transloco';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { DateAgoPipe } from './components/_pipes/date-ago.pipe';
+import { SafeHtmlPipe } from './components/_pipes/safe-html.pipe';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -54,4 +55,5 @@ export const appImports = [
   TranslocoModule,
 
   DateAgoPipe,
+  SafeHtmlPipe,
 ];

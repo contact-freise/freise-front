@@ -13,10 +13,14 @@ li {
 }
 
 a {
-    margin-left: 16px;
     margin-right: 8px;
 }
 
-small {
-    margin-left: 16px;
+.pp {
+    margin-right: 16px;
+    object-fit: cover;
+}
+
+.inline {
+    display: inline-block;
 }

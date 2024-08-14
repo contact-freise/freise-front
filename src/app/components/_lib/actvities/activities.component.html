@@ -3,11 +3,11 @@
         <li class="list-group-item" *ngFor="let activity of activities$ | async">
             <img (click)="userClick(activity)" class="pp" [src]="activity.user?.avatarUrl" width="60" height="60">
             <div>
-                <div class="flex">
-                    <a (click)="userClick(activity)">
+                <div>
+                    <a class="flex inline" (click)="userClick(activity)">
                         {{ activity.user?.username }}
                     </a>
-                    <div [innerHTML]="activity.action.name"></div>
+                    <div class="flex inline" [innerHTML]="activity.action.name | safeHtml"></div>
                 </div>
                 <small>{{ activity.createdAt | dateAgo }}</small>
             </div>
