@@ -19,8 +19,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _activityService: ActivityService,
-    private router: Router,
-    private toastr: ToastrService
+    private _router: Router,
+    private _toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -39,11 +39,11 @@ export class RegisterComponent implements OnInit {
             activityType: 'register',
           }
         }).pipe(take(1)).subscribe();
-        this.router.navigate(['/home']);
+        this._router.navigate(['/home']);
       },
       err => {
         console.error(err);
-        this.toastr.error(err.error.message);
+        this._toastr.error(err.error.message);
       }
     );
   }

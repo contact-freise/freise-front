@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   user$: Observable<User>;
 
   constructor(
-    private router: Router,
+    private _router: Router,
     private _authService: AuthService,
     private _activityService: ActivityService,
     private _userService: UserService,
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
       res => {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('user');
-        this.router.navigate(['/logout']);
+        this._router.navigate(['/logout']);
       }
     );
   }

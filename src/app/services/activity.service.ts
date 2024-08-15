@@ -13,7 +13,7 @@ export class ActivityService {
     constructor(
         private http: HttpClient,
         private _authService: AuthService,
-        private router: Router,
+        private _router: Router,
     ) {
 
         // Log the user's navigation activity

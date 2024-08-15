@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { appImports } from '../../app.config';
-import { finalize, Observable, of, take, tap } from 'rxjs';
+import { finalize, Observable, of, switchMap, take } from 'rxjs';
 import { ActivityService } from '../../services/activity.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
@@ -29,16 +29,28 @@ export class ProfileComponent implements OnInit {
     private _activityService: ActivityService,
     private _userService: UserService,
     private _authService: AuthService,
-    private activatedRoute: ActivatedRoute,
+    private _activatedRoute: ActivatedRoute,
 
   ) { }
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.activatedRoute.params.subscribe((params: Params) => {
+    this._activatedRoute.params.subscribe((params: Params) => {
       this.user = params['user'];
       this.isLoggedUser = this._authService.user._id === this.user;
-      this.user$ = this._userService.getByUserId(this.user)
+      this.user$ = this._userService.getByUserId(this.user).pipe(
+        switchMap(user => {
+          if (!this.isLoggedUser) {
+            this._activityService.post({
+              action: {
+                name: `visited user <a href='user/${user._id}'>${user.username}</a> 👀`,
+                activityType: 'visitUser',
+              },
+            }).pipe(take(1)).subscribe();
+          }
+          return of(user);
+        })
+      );
       this.activities$ = this._activityService.getByUserId(this.user).pipe(
         finalize(() => this.isLoading = false)
       );

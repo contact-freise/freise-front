@@ -4,10 +4,10 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
-    private http = inject(HttpClient);
+    private _http = inject(HttpClient);
 
     getTranslation(lang: string) {
         lang = navigator.languages[0].split('-')[0] ?? lang;
-        return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
+        return this._http.get<Translation>(`/assets/i18n/${lang}.json`);
     }
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -24,14 +23,16 @@ export class AuthService {
     return this._user;
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private _http: HttpClient, 
+  ) { }
 
   register(user): Observable<any> {
-    return this.http.post<any>(`${environment.API_URL}/user`, user);
+    return this._http.post<any>(`${environment.API_URL}/user`, user);
   }
 
   login(user): Observable<any> {
-    return this.http.post<any>(`${environment.API_URL}/user/login`, user);
+    return this._http.post<any>(`${environment.API_URL}/user/login`, user);
   }
 
   isLoggedIn(): boolean {
