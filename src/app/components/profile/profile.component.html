@@ -22,11 +22,22 @@
             <input id="file-upload-backgroundUrl" type="file" accept="image/*"
                 (change)="onFileChange($event, 'backgroundUrl')" />
         </div>
-        <h2>{{user.username}}</h2>
+        <h2>{{user.username}} <small>{{ user.age ?? '' }}{{ user.gender ?? '' }}</small></h2> 
     </div>
+
+    <div *ngIf="user$ | async as user">
+        <h3>{{ t('profile.about') }}</h3>
+        <div *ngIf="isLoggedUser">
+            <textarea (blur)="updateAbout(user)" [(ngModel)]="user.about" [placeholder]="'profile.about-placeholder' | transloco"></textarea>
+        </div>
+        <div *ngIf="!isLoggedUser">
+            <p>{{user.about}}</p>
+        </div>
+    </div>
+
+    <h3>{{ t('profile.activity') }}</h3>
+    <activities [activities$]="activities$"></activities>
     <ng-template #loading>
         <div class="spinner"></div>
     </ng-template>
-    <h3>{{ t('profile.activity') }}</h3>
-    <activities [activities$]="activities$"></activities>
 </div>

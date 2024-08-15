@@ -30,7 +30,9 @@
     "activities": "Latest activities"
   },
   "profile": {
-    "activity": "Activity"
+    "activity": "Activity",
+    "about": "About",
+    "about-placeholder": "About me..."
   },
   "logout": {
     "title": "Bye bye tho!",

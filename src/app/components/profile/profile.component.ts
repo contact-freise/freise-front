@@ -62,15 +62,44 @@ export class ProfileComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      this.user$ = this._userService.updateUserImgUrl(this.user, imgUrl, file);
-      this._activityService.post({
-        action: {
-          name: `updated ${imgUrl.replaceAll('Url', '')} 📸`,
-          activityType: 'updateImg',
-        },
-      }).pipe(take(1)).subscribe()
+      this.isLoading = true;
+      this._userService.updateUserImgUrl(this.user, imgUrl, file).pipe(
+        take(1),
+        finalize(() => this.isLoading = false)
+      ).subscribe(user => {
+        this.user$ = of(user);
+        this._activityService.post({
+          action: {
+            name: `updated ${imgUrl.replaceAll('Url', '')} 📸`,
+            activityType: 'updateImg',
+          },
+        }).pipe(take(1)).subscribe();
+      });
     };
   }
+
+  private _updateUser(user: Partial<User>) {
+    this.isLoading = true
+    this._userService.updateUser(user).pipe(
+      take(1),
+      finalize(() => this.isLoading = false)
+    ).subscribe(user => {
+      this.user$ = of(user);
+      this._activityService.post({
+        action: {
+          name: `updated about me 📝`,
+          activityType: 'updateAbout',
+        },
+      }).pipe(take(1)).subscribe();
+    });
+  }
+
+  updateAbout(user: User) {
+    const { _id, about } = user;
+    if (!about) return;
+    this._updateUser({ _id, about });
+  }
+
 
   onFollow() {
     //this._userService.follow(this.user).subscribe();

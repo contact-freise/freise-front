@@ -30,7 +30,9 @@
     "activities": "Dernières activités"
   },
   "profile": {
-    "activity": "Activité"
+    "activity": "Activité",
+    "about": "À propos",
+    "about-placeholder": "À propos de moi..."
   },
   "logout": {
     "title": "Allez salut hein !",

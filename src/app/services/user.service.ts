@@ -24,4 +24,8 @@ export class UserService {
         formData.append("file", file);
         return this._http.post<User>(`${environment.API_URL}/user/${user}/${imgUrl}/upload`, formData, this._authService.getHttpOptions());
     }
+
+    updateUser(user: Partial<User>): Observable<User> {
+        return this._http.put<User>(`${environment.API_URL}/user/${user._id}`, user, this._authService.getHttpOptions());
+    }
 }
