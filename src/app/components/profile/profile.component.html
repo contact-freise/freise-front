@@ -12,21 +12,21 @@
             </div>
         </div>
         <img *ngIf="user.backgroundUrl" class="backgroundUrl" [src]="user.backgroundUrl">
-        
+
         <div class="flex">
             <!--<button class="btn btn-primary">Edit Profile</button>-->
-            
+
             <input id="file-upload-avatarUrl" type="file" accept="image/*"
                 (change)="onFileChange($event, 'avatarUrl')" />
-            
+
             <input id="file-upload-backgroundUrl" type="file" accept="image/*"
                 (change)="onFileChange($event, 'backgroundUrl')" />
         </div>
-        <h1>{{user.username}}</h1>
+        <h2>{{user.username}}</h2>
     </div>
     <ng-template #loading>
         <div class="spinner"></div>
     </ng-template>
-    <h2>{{ t('profile.activity') }}</h2>
+    <h3>{{ t('profile.activity') }}</h3>
     <activities [activities$]="activities$"></activities>
 </div>

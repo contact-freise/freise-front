@@ -11,16 +11,18 @@ import { provideTransloco, TranslocoModule } from '@jsverse/transloco';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { DateAgoPipe } from './components/_pipes/date-ago.pipe';
 import { SafeHtmlPipe } from './components/_pipes/safe-html.pipe';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(
       withInterceptors([]),
     ),
-    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(),
     provideAnimations(),
+    provideAnimationsAsync(),
     provideToastr({
       timeOut: 3000,
       positionClass: 'toast-top-right',
