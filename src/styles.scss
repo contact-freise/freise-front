@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
+html,
+body {
+    height: 100%;
+}
 
 h2 {
     color: #b8112d;
@@ -28,11 +31,4 @@ small {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-
-.NgxEditor__MenuBar {
-    background-color: #b8112d;
-    color: #b9203a;
-    border-radius: 4px;
 }

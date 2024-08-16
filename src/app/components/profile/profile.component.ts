@@ -54,10 +54,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
               },
             });
           }
-          return of({
-            ...user,
-            about: JSON.parse(user.about),
-          });
+          return of(user);
         })
       );
       this.activities$ = this._activityService.getByUserId(this.user).pipe(
@@ -93,10 +90,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       take(1),
       finalize(() => this.isLoading = false)
     ).subscribe(user => {
-      this.user$ = of({
-        ...user,
-        about: JSON.parse(user.about),
-      });
+      this.user$ = of(user);
       this._activityService.log({
         action: {
           name: `updated about me 📝`,
@@ -109,7 +103,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   updateAbout(user: User) {
     const { _id, about } = user;
     if (!about) return;
-    this._updateUser({ _id, about: JSON.stringify(about) });
+    this._updateUser({ _id, about });
     this.editAbout = false;
   }
 
