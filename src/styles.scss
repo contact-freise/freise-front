@@ -30,5 +30,36 @@ small {
 .flex {
     display: flex;
     align-items: center;
+}
+
+.space-between {
     justify-content: space-between;
 }
+
+.space-around {
+    justify-content: space-around;
+}
+
+@mixin margin($size) {
+    .m-t-#{$size} {
+        margin-top: #{$size}px;
+    }
+
+    .m-b-#{$size} {
+        margin-bottom: #{$size}px;
+    }
+
+    .m-r-#{$size} {
+        margin-right: #{$size}px;
+    }
+
+    .m-l-#{$size} {
+        margin-left: #{$size}px;
+    }
+}
+
+@include margin(4);
+@include margin(8);
+@include margin(16);
+@include margin(24);
+@include margin(32);

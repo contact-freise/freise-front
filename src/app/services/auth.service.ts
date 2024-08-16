@@ -28,11 +28,11 @@ export class AuthService {
   ) { }
 
   register(user): Observable<any> {
-    return this._http.post<any>(`${environment.API_URL}/user`, user);
+    return this._http.post<any>(`${environment.API_URL}/users`, user);
   }
 
   login(user): Observable<any> {
-    return this._http.post<any>(`${environment.API_URL}/user/login`, user);
+    return this._http.post<any>(`${environment.API_URL}/users/login`, user);
   }
 
   isLoggedIn(): boolean {

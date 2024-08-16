@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
 import { Activity } from '../../../models/activity';
 import { appImports } from '../../../app.config';
 
@@ -23,7 +22,7 @@ export class ActivitiesComponent implements OnInit {
     }
 
     userClick(activity: Activity) {
-        this.router.navigateByUrl(`/user/${activity.user._id}`);
+        this.router.navigateByUrl(`/users/${activity.user._id}`);
     }
 
 }

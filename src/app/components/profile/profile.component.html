@@ -13,9 +13,7 @@
         </div>
         <img *ngIf="user.backgroundUrl" class="backgroundUrl" [src]="user.backgroundUrl">
 
-        <div class="flex">
-            <!--<button class="btn btn-primary">Edit Profile</button>-->
-
+        <div class="flex space-between">
             <input id="file-upload-avatarUrl" type="file" accept="image/*"
                 (change)="onFileChange($event, 'avatarUrl')" />
 

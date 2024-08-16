@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { appImports, toolbar } from '../../app.config';
-import { finalize, Observable, of, switchMap, take } from 'rxjs';
+import { Observable, of, switchMap, take } from 'rxjs';
 import { ActivityService } from '../../services/activity.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
@@ -21,13 +21,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user: string;
   activities = [];
   isLoggedUser = false;
-  isLoading = false;
 
   user$: Observable<User>;
   activities$;
 
   editAbout = false;
-  editor: Editor;
+  editor: Editor = new Editor();
   toolbar: Toolbar = toolbar;
 
   constructor(
@@ -39,27 +38,27 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.editor = new Editor();
-    this.isLoading = true;
     this._activatedRoute.params.subscribe((params: Params) => {
       this.user = params['user'];
       this.isLoggedUser = this._authService.user._id === this.user;
-      this.user$ = this._userService.getByUserId(this.user).pipe(
+      this._userService.getByUserId(this.user).pipe(
+        take(1),
         switchMap(user => {
           if (!this.isLoggedUser) {
             this._activityService.log({
               action: {
-                name: `visited user <a href='user/${user._id}'>${user.username}</a> 👀`,
+                name: `visited user 👀`,
                 activityType: 'visitUser',
               },
+              mentionnedUser: user._id,
             });
           }
           return of(user);
         })
-      );
-      this.activities$ = this._activityService.getByUserId(this.user).pipe(
-        finalize(() => this.isLoading = false)
-      );
+      ).subscribe(user => {
+        this.user$ = of(user);
+      });
+      this.activities$ = this._activityService.getByUserId(this.user);
     });
   }
 
@@ -68,10 +67,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      this.isLoading = true;
       this._userService.updateUserImgUrl(this.user, imgUrl, file).pipe(
         take(1),
-        finalize(() => this.isLoading = false)
       ).subscribe(user => {
         this.user$ = of(user);
         this._activityService.log({
@@ -85,15 +82,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   private _updateUser(user: Partial<User>) {
-    this.isLoading = true
     this._userService.updateUser(user).pipe(
       take(1),
-      finalize(() => this.isLoading = false)
     ).subscribe(user => {
       this.user$ = of(user);
       this._activityService.log({
         action: {
-          name: `updated about me 📝`,
+          name: `updated about me 🥁`,
           activityType: 'updateAbout',
         },
       });
