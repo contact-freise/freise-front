@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { appImports } from '../../app.config';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { appImports, toolbar } from '../../app.config';
 import { finalize, Observable, of, switchMap, take } from 'rxjs';
 import { ActivityService } from '../../services/activity.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -7,6 +7,7 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { ActivitiesComponent } from '../_lib/actvities/activities.component';
 import { AuthService } from '../../services/auth.service';
+import { Editor, Toolbar } from 'ngx-editor';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [...appImports, ActivitiesComponent],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   user: string;
   activities = [];
@@ -24,6 +25,10 @@ export class ProfileComponent implements OnInit {
 
   user$: Observable<User>;
   activities$;
+
+  editAbout = false;
+  editor: Editor;
+  toolbar: Toolbar = toolbar;
 
   constructor(
     private _activityService: ActivityService,
@@ -34,6 +39,7 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.editor = new Editor();
     this.isLoading = true;
     this._activatedRoute.params.subscribe((params: Params) => {
       this.user = params['user'];
@@ -41,14 +47,17 @@ export class ProfileComponent implements OnInit {
       this.user$ = this._userService.getByUserId(this.user).pipe(
         switchMap(user => {
           if (!this.isLoggedUser) {
-            this._activityService.post({
+            this._activityService.log({
               action: {
                 name: `visited user <a href='user/${user._id}'>${user.username}</a> 👀`,
                 activityType: 'visitUser',
               },
-            }).pipe(take(1)).subscribe();
+            });
           }
-          return of(user);
+          return of({
+            ...user,
+            about: JSON.parse(user.about),
+          });
         })
       );
       this.activities$ = this._activityService.getByUserId(this.user).pipe(
@@ -68,12 +77,12 @@ export class ProfileComponent implements OnInit {
         finalize(() => this.isLoading = false)
       ).subscribe(user => {
         this.user$ = of(user);
-        this._activityService.post({
+        this._activityService.log({
           action: {
             name: `updated ${imgUrl.replaceAll('Url', '')} 📸`,
             activityType: 'updateImg',
           },
-        }).pipe(take(1)).subscribe();
+        });
       });
     };
   }
@@ -84,22 +93,25 @@ export class ProfileComponent implements OnInit {
       take(1),
       finalize(() => this.isLoading = false)
     ).subscribe(user => {
-      this.user$ = of(user);
-      this._activityService.post({
+      this.user$ = of({
+        ...user,
+        about: JSON.parse(user.about),
+      });
+      this._activityService.log({
         action: {
           name: `updated about me 📝`,
           activityType: 'updateAbout',
         },
-      }).pipe(take(1)).subscribe();
+      });
     });
   }
 
   updateAbout(user: User) {
     const { _id, about } = user;
     if (!about) return;
-    this._updateUser({ _id, about });
+    this._updateUser({ _id, about: JSON.stringify(about) });
+    this.editAbout = false;
   }
-
 
   onFollow() {
     //this._userService.follow(this.user).subscribe();
@@ -108,4 +120,9 @@ export class ProfileComponent implements OnInit {
   onUnfollow() {
     //this._userService.unfollow(this.user).subscribe();
   }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
 }

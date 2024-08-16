@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { appImports } from '../../app.config';
 import { ActivityService } from '../../services/activity.service';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -35,12 +34,12 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(res.user));
           this._authService.authToken = res.token;
           this._authService.user = res.user;
-          this._activityService.post({
+          this._activityService.log({
             action: {
               name: 'logged in 🚀',
               activityType: 'login',
             }
-          }).pipe(take(1)).subscribe();
+          });
           this._router.navigate(['/home']);
         },
         err => {

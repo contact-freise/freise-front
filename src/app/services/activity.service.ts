@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, take } from 'rxjs';
 import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -13,7 +12,6 @@ export class ActivityService {
     constructor(
         private http: HttpClient,
         private _authService: AuthService,
-        private _router: Router,
     ) {
 
         // Log the user's navigation activity
@@ -42,5 +40,9 @@ export class ActivityService {
 
     post(payload): Observable<any> {
         return this.http.post(`${environment.API_URL}/activity`, payload, this._authService.getHttpOptions());
+    }
+
+    log(action): void {
+        this.post(action).pipe(take(1)).subscribe();
     }
 }

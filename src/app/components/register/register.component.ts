@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { appImports } from '../../app.config';
-import { take } from 'rxjs';
 import { ActivityService } from '../../services/activity.service';
 
 @Component({
@@ -33,12 +32,12 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(res.user));
         this._authService.authToken = res.token;
         this._authService.user = res.user;
-        this._activityService.post({
+        this._activityService.log({
           action: {
             name: 'joined Freise 🍓',
             activityType: 'register',
           }
-        }).pipe(take(1)).subscribe();
+        });
         this._router.navigate(['/home']);
       },
       err => {
