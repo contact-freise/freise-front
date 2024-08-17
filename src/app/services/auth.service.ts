@@ -1,30 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private _token: string;
-  set authToken(token: string) {
-    this._token = token;
-  }
-  get authToken() {
-    return this._token;
-  }
 
-  _user: any;
-  set user(user: any) {
-    this._user = user;
-  }
-  get user() {
-    return this._user;
-  }
+  authToken: string;
+  userId: string;
+  user$: Observable<User>
 
   constructor(
-    private _http: HttpClient, 
+    private _http: HttpClient,
   ) { }
 
   register(user): Observable<any> {
@@ -35,18 +25,44 @@ export class AuthService {
     return this._http.post<any>(`${environment.API_URL}/users/login`, user);
   }
 
+  initUser(res) {
+    localStorage.setItem('authToken', res.authToken);
+    this.authToken = res.authToken;
+
+    localStorage.setItem('userId', res.user._id);
+    this.userId = res.user._id;
+
+    this.user$ = of(res.user);
+  }
+
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('auth_token');
+    return !!localStorage.getItem('authToken');
+  }
+
+  getUser(): Observable<User> {
+    const user = this.getUserId();
+    if (!user) {
+      return of(null);
+    }
+    return this._http.get<User>(`${environment.API_URL}/users/${user}`, this.getHttpOptions()).pipe(
+      tap(user => {
+        this.user$ = of(user);
+      }),
+    );
+  }
+
+  getUserId() {
+    return localStorage.getItem('userId');
   }
 
   getAuthToken() {
-    return localStorage.getItem('auth_token');
+    return localStorage.getItem('authToken');
   }
 
   getHttpOptions() {
     return {
       headers: new HttpHeaders({
-        authorization: localStorage.getItem('auth_token'),
+        authorization: localStorage.getItem('authToken'),
       }),
     }
   }

@@ -30,10 +30,8 @@ export class LoginComponent implements OnInit {
       .login(this.user)
       .subscribe(
         res => {
-          localStorage.setItem('auth_token', res.auth_token);
-          localStorage.setItem('user', JSON.stringify(res.user));
-          this._authService.authToken = res.token;
-          this._authService.user = res.user;
+          this._authService.initUser(res);
+
           this._activityService.log({
             action: {
               name: 'logged in 🚀',

@@ -31,7 +31,7 @@
     "post_placeholder": "What's new?",
     "post_submit": "Post"
   },
-  "activity": {
+  "post": {
     "like": "👍",
     "dislike": "👎",
     "comment": "💬"

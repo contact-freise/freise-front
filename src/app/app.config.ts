@@ -49,6 +49,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTreeModule } from '@angular/material/tree';
+import { ActivitiesComponent } from './components/_lib/actvities/activities.component';
+import { PostComponent } from './components/_lib/post/post.component';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -85,6 +87,7 @@ export const appConfig: ApplicationConfig = {
 
 const MATERIAL_MODULES = [
   MatButtonModule,
+  MatButtonToggleModule,
   /*MatIconModule,
   MatFormFieldModule,
   MatInputModule,
@@ -105,7 +108,6 @@ const MATERIAL_MODULES = [
   MatSliderModule,
   MatAutocompleteModule,
   MatChipsModule,
-  MatButtonToggleModule,
   MatTooltipModule,
   MatPaginatorModule,
   MatSortModule,
@@ -133,6 +135,11 @@ const PLUGINS = [
   MarkdownModule,
 ];
 
+const APP_STANDALONE = [
+  ActivitiesComponent,
+  PostComponent
+];
+
 export const appImports = [
   CommonModule,
   CommonModule,
@@ -141,6 +148,7 @@ export const appImports = [
   RouterOutlet,
   RouterLink,
   RouterLinkActive,
+  ...APP_STANDALONE,
   ...MATERIAL_MODULES,
   ...PIPES,
   ...PLUGINS,

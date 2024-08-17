@@ -2,22 +2,23 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { appImports, toolbar } from '../../app.config';
 import { AuthService } from '../../services/auth.service';
 import { ActivityService } from '../../services/activity.service';
-import { ActivitiesComponent } from '../_lib/actvities/activities.component';
 import { Editor, Toolbar } from 'ngx-editor';
-import { take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post';
+import { User } from '../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [...appImports, ActivitiesComponent],
+  imports: appImports,
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  user: any;
+  user$: Observable<User>;
   activities$;
 
   editor: Editor = new Editor();
@@ -29,18 +30,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _authService: AuthService,
     private _activityService: ActivityService,
     private _postService: PostService,
+    private _router: Router,
 
   ) { }
 
   ngOnInit(): void {
-    this.user = this._authService.user;
+    this.user$ = this._authService.getUser()
     this.activities$ = this._activityService.get();
   }
 
-  createPost(post: Post) {
+  userClick(user: User) {
+    this._router.navigateByUrl(`/users/${user._id}`);
+  }
+
+  createPost(user: User, post: Post) {
     this._postService.createPost({
       ...post,
-      author: this.user._id,
+      author: user._id,
     }).pipe(
       take(1),
     ).subscribe(post => {

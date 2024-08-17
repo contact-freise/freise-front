@@ -7,4 +7,9 @@ export class Post {
     content: string;
     tags: string[];
     imageUrl: string;
+
+    likesCount: number;
+    likes: string[];
+    dislikes: string[];
+    dislikesCount: number;
 }

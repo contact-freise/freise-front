@@ -5,7 +5,6 @@ import { ActivityService } from '../../services/activity.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
-import { ActivitiesComponent } from '../_lib/actvities/activities.component';
 import { AuthService } from '../../services/auth.service';
 import { Editor, Toolbar } from 'ngx-editor';
 
@@ -14,7 +13,7 @@ import { Editor, Toolbar } from 'ngx-editor';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone: true,
-  imports: [...appImports, ActivitiesComponent],
+  imports: appImports,
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
@@ -40,7 +39,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._activatedRoute.params.subscribe((params: Params) => {
       this.user = params['user'];
-      this.isLoggedUser = this._authService.user._id === this.user;
+      this.isLoggedUser = this._authService.getUserId() === this.user;
       this._userService.getByUserId(this.user).pipe(
         take(1),
         switchMap(user => {

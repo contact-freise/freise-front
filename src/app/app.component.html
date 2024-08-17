@@ -12,7 +12,7 @@
         <a class="nav-link" routerLink="/register">{{ t('app.register') }}</a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">
-        <a class="nav-link" [routerLink]="['user', getUserId()]">
+        <a class="nav-link" [routerLink]="['users', getUserId()]">
           <img *ngIf="user$ | async as user" class="pp" [src]="user.avatarUrl" width="30" height="30">
         </a>
       </li>

@@ -15,34 +15,13 @@ export class ActivitiesComponent implements OnInit {
     @Input() activities$
 
     constructor(
-        private router: Router,
+        private _router: Router,
     ) { }
 
     ngOnInit(): void {
     }
 
     userClick(activity: Activity) {
-        this.router.navigateByUrl(`/users/${activity.user._id}`);
-    }
-
-    /*postClick(activity: Activity) {
-        this.router.navigateByUrl(`/posts/${activity.post._id}`);
-    }
-
-    userMentionnedClick(activity: Activity) {
-        this.router.navigateByUrl(`/users/${activity.mentionnedUser._id}`);
-    }*/
-
-    like(activity: Activity) {
-        console.log('like', activity);
-    }
-
-    
-    dislike(activity: Activity) {
-        console.log('dislike', activity);
-    }
-    
-    comment(activity: Activity) {
-        console.log('comment', activity);
+        this._router.navigateByUrl(`/users/${activity.user._id}`);
     }
 }

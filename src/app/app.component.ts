@@ -3,7 +3,7 @@ import { appImports } from './app.config';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ActivityService } from './services/activity.service';
-import { Observable, take } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { UserService } from './services/user.service';
 import { User } from './models/user';
 
@@ -26,10 +26,14 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.isLoggedIn()) {
-      this._authService.user = JSON.parse(localStorage.getItem('user'));
-      this.user$ = this._userService.getByUserId(this.getUserId());
+    const userId = this.getUserId();
+    if (!userId) {
+      return;
     }
+    this._userService.getByUserId(userId).subscribe(user => {
+      this._authService.user$ = of(user);
+      this.user$ = this._authService.user$;
+    })
 
     /*
     const eventSource = new EventSource('sse');
@@ -45,11 +49,7 @@ export class AppComponent implements OnInit {
   }
 
   getUserId() {
-    return this._authService.user._id;
-  }
-
-  getUserAvatarUrl() {
-    return this._authService.user.avatarUrl;
+    return localStorage.getItem('userId');
   }
 
   logout() {
@@ -60,8 +60,8 @@ export class AppComponent implements OnInit {
       }
     }).pipe(take(1)).subscribe(
       res => {
-        localStorage.removeItem('auth_token');
-        localStorage.removeItem('user');
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userId');
         this._router.navigate(['/logout']);
       }
     );
