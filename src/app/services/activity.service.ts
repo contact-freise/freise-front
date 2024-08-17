@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, take } from 'rxjs';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
+import { Activity } from '../models/activity';
 
 @Injectable({
     providedIn: 'root'
@@ -30,16 +31,16 @@ export class ActivityService {
         })*/
     }
 
-    get(): Observable<any> {
-        return this.http.get(`${environment.API_URL}/activity`, this._authService.getHttpOptions());
+    get(): Observable<Activity> {
+        return this.http.get<Activity>(`${environment.API_URL}/activity`, this._authService.getHttpOptions());
     }
 
-    getByUserId(user: string): Observable<any> {
-        return this.http.get(`${environment.API_URL}/activity/${user}`, this._authService.getHttpOptions());
+    getByUserId(user: string): Observable<Activity> {
+        return this.http.get<Activity>(`${environment.API_URL}/activity/${user}`, this._authService.getHttpOptions());
     }
 
-    post(payload): Observable<any> {
-        return this.http.post(`${environment.API_URL}/activity`, payload, this._authService.getHttpOptions());
+    post(payload): Observable<Activity> {
+        return this.http.post<Activity>(`${environment.API_URL}/activity`, payload, this._authService.getHttpOptions());
     }
 
     log(action): void {

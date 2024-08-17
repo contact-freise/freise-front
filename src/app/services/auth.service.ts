@@ -17,12 +17,12 @@ export class AuthService {
     private _http: HttpClient,
   ) { }
 
-  register(user): Observable<any> {
-    return this._http.post<any>(`${environment.API_URL}/users`, user);
+  register(user): Observable<User> {
+    return this._http.post<User>(`${environment.API_URL}/users`, user);
   }
 
-  login(user): Observable<any> {
-    return this._http.post<any>(`${environment.API_URL}/users/login`, user);
+  login(user): Observable<User> {
+    return this._http.post<User>(`${environment.API_URL}/users/login`, user);
   }
 
   initUser(res) {

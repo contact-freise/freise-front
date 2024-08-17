@@ -1,25 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Activity } from '../../../models/activity';
 import { appImports } from '../../../app.config';
 
 @Component({
-    selector: 'activities',
+    selector: 'app-activities',
     templateUrl: './activities.component.html',
     styleUrls: ['./activities.component.scss'],
     standalone: true,
     imports: appImports,
 })
-export class ActivitiesComponent implements OnInit {
+export class ActivitiesComponent {
 
     @Input() activities$
 
     constructor(
         private _router: Router,
     ) { }
-
-    ngOnInit(): void {
-    }
 
     userClick(activity: Activity) {
         this._router.navigateByUrl(`/users/${activity.user._id}`);

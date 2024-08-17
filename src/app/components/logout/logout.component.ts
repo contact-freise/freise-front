@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { appImports } from '../../app.config';
-import { OnInit } from '@angular/core';
 // var giphy = require('giphy-api')();
 
 @Component({
@@ -10,12 +9,10 @@ import { OnInit } from '@angular/core';
   standalone: true,
   imports: appImports,
 })
-export class LogoutComponent implements OnInit {
+export class LogoutComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-    /*debugger
+  /*ngOnInit(): void {
+    debugger
     giphy('0UTRbFtkMxAplrohufYco5IY74U8hOes').random('sad hamster', function (err, res) {
       if (err) {
         console.log(err);
@@ -23,7 +20,7 @@ export class LogoutComponent implements OnInit {
         console.log(res.data.image_url);
         document.getElementById('giphy').setAttribute('src', res.data.image_url);
       }
-    });*/
-  }
+    });
+  }*/
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,7 @@ import { ActivityService } from '../../services/activity.service';
   standalone: true,
   imports: appImports,
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   user = { username: '', password: '', email: '', gender: '', dob: '' };
 
   constructor(
@@ -21,9 +21,6 @@ export class RegisterComponent implements OnInit {
     private _router: Router,
     private _toastr: ToastrService
   ) { }
-
-  ngOnInit(): void {
-  }
 
   onSubmit() {
     this._authService.register(this.user).subscribe(

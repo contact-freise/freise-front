@@ -43,7 +43,7 @@
     </div>
 
     <h3>{{ t('profile.activity') }}</h3>
-    <activities [activities$]="activities$"></activities>
+    <app-activities [activities$]="activities$"></app-activities>
     <ng-template #loading>
         <div class="spinner"></div>
     </ng-template>

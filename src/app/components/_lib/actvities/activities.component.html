@@ -10,7 +10,7 @@
                     </a>
                     <div class="flex inline" [innerHTML]="activity.action.name | safeHtml"></div>
                 </div>
-                <post *ngIf="activity.post" [post]="activity.post"></post>
+                <app-post *ngIf="activity.post" [post]="activity.post"></app-post>
                 <small>{{ activity.createdAt | dateAgo }}</small>
             </div>
         </li>

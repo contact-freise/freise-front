@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
         activityType: 'logout',
       }
     }).pipe(take(1)).subscribe(
-      res => {
+      () => {
         localStorage.removeItem('authToken');
         localStorage.removeItem('userId');
         this._router.navigate(['/logout']);

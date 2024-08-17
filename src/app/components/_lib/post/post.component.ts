@@ -5,9 +5,10 @@ import { PostService } from '../../../services/post.service';
 import { take } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
 import * as _ from 'lodash';
+import { ActivityService } from '../../../services/activity.service';
 
 @Component({
-    selector: 'post',
+    selector: 'app-post',
     templateUrl: './post.component.html',
     styleUrls: ['./post.component.scss'],
     standalone: true,
@@ -26,6 +27,7 @@ export class PostComponent implements OnInit {
     constructor(
         private _postService: PostService,
         private _authService: AuthService,
+        private _activityService: ActivityService,
     ) { }
 
     ngOnInit(): void {
@@ -41,13 +43,13 @@ export class PostComponent implements OnInit {
     likeDislikeChanged(event) {
         if (event.value === 'like') {
             this.like(this.post);
-            if(this.alreadyDisliked) {
+            if (this.alreadyDisliked) {
                 this.undislike(this.post);
             }
         }
         if (event.value === 'dislike') {
             this.dislike(this.post);
-            if(this.alreadyLiked) {
+            if (this.alreadyLiked) {
                 this.unlike(this.post);
             }
         }
@@ -58,6 +60,12 @@ export class PostComponent implements OnInit {
             .subscribe(() => {
                 this.likesCount++;
                 this.alreadyLiked = true;
+                this._activityService.log({
+                    action: {
+                        name: `liked a post 👍`,
+                        activityType: 'likePost',
+                    },
+                });
             });
     }
 
@@ -74,6 +82,12 @@ export class PostComponent implements OnInit {
             .subscribe(() => {
                 this.dislikesCount++;
                 this.alreadyDisliked = true;
+                this._activityService.log({
+                    action: {
+                        name: `disliked a post 👎`,
+                        activityType: 'dislikePost',
+                    },
+                });
             });
     }
 
@@ -86,5 +100,6 @@ export class PostComponent implements OnInit {
     }
 
     comment(post: Post) {
+        console.log('comment', post);
     }
 }
