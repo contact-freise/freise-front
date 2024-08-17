@@ -30,14 +30,14 @@
         id="file-upload-avatarUrl"
         type="file"
         accept="image/*"
-        (change)="onFileChange($event, 'avatarUrl')"
+        (change)="onFileChange($event, user, 'avatarUrl')"
       />
 
       <input
         id="file-upload-backgroundUrl"
         type="file"
         accept="image/*"
-        (change)="onFileChange($event, 'backgroundUrl')"
+        (change)="onFileChange($event, user, 'backgroundUrl')"
       />
     </div>
     <h2>
@@ -87,6 +87,7 @@
 
   <h3>{{ t('profile.activity') }}</h3>
   <app-activities [activities$]="activities$"></app-activities>
+
   <ng-template #loading>
     <div class="spinner"></div>
   </ng-template>

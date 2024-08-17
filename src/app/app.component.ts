@@ -3,9 +3,8 @@ import { appImports } from './app.config';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ActivityService } from './services/activity.service';
-import { Observable, of, take } from 'rxjs';
+import { take } from 'rxjs';
 import { UserService } from './services/user.service';
-import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +14,11 @@ import { User } from './models/user';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  user$: Observable<User>;
-
   constructor(
-    private _router: Router,
-    private _authService: AuthService,
+    public authService: AuthService,
     private _activityService: ActivityService,
     private _userService: UserService,
+    private _router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -30,8 +27,7 @@ export class AppComponent implements OnInit {
       return;
     }
     this._userService.getByUserId(userId).subscribe((user) => {
-      this._authService.user$ = of(user);
-      this.user$ = this._authService.user$;
+      this.authService.user$.next(user);
     });
 
     /*
@@ -44,7 +40,7 @@ export class AppComponent implements OnInit {
   }
 
   isLoggedIn() {
-    return this._authService.isLoggedIn();
+    return this.authService.isLoggedIn();
   }
 
   getUserId() {

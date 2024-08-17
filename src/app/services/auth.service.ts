@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 
@@ -10,7 +10,7 @@ import { User } from '../models/user';
 export class AuthService {
   authToken: string;
   userId: string;
-  user$: Observable<User>;
+  user$: BehaviorSubject<User> = new BehaviorSubject<User>(new User());
 
   constructor(private _http: HttpClient) {}
 
@@ -29,7 +29,7 @@ export class AuthService {
     localStorage.setItem('userId', res.user._id);
     this.userId = res.user._id;
 
-    this.user$ = of(res.user);
+    this.user$.next(res.user);
   }
 
   isLoggedIn(): boolean {
@@ -45,7 +45,7 @@ export class AuthService {
       .get<User>(`${environment.API_URL}/users/${user}`, this.getHttpOptions())
       .pipe(
         tap((user) => {
-          this.user$ = of(user);
+          this.user$.next(user);
         }),
       );
   }

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { appImports, toolbar } from '../../app.config';
-import { Observable, of, switchMap, take } from 'rxjs';
+import { Observable, of, switchMap, take, tap } from 'rxjs';
 import { ActivityService } from '../../services/activity.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
@@ -16,7 +16,7 @@ import { Editor, Toolbar } from 'ngx-editor';
   imports: appImports,
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  user: string;
+  userId: string;
   activities = [];
   isLoggedUser = false;
 
@@ -28,18 +28,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   toolbar: Toolbar = toolbar;
 
   constructor(
-    private _activityService: ActivityService,
-    private _userService: UserService,
     private _authService: AuthService,
+    private _userService: UserService,
+    private _activityService: ActivityService,
     private _activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
     this._activatedRoute.params.subscribe((params: Params) => {
-      this.user = params['user'];
-      this.isLoggedUser = this._authService.getUserId() === this.user;
+      this.userId = params['user'];
+      this.isLoggedUser = this._authService.getUserId() === this.userId;
+
       this._userService
-        .getByUserId(this.user)
+        .getByUserId(this.userId)
         .pipe(
           take(1),
           switchMap((user) => {
@@ -58,26 +59,34 @@ export class ProfileComponent implements OnInit, OnDestroy {
         .subscribe((user) => {
           this.user$ = of(user);
         });
-      this.activities$ = this._activityService.getByUserId(this.user);
+      this.activities$ = this._activityService.getByUserId(this.userId);
     });
   }
 
-  onFileChange(event, imgUrl: 'avatarUrl' | 'backgroundUrl') {
+  onFileChange(event, user: User, imgUrl: 'avatarUrl' | 'backgroundUrl') {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
       this._userService
-        .updateUserImgUrl(this.user, imgUrl, file)
-        .pipe(take(1))
+        .updateUserImgUrl(user._id, imgUrl, file)
+        .pipe(
+          take(1),
+          tap(() => {
+            this._activityService.log({
+              action: {
+                name: `updated ${imgUrl.replaceAll('Url', '')} 📸`,
+                activityType: 'updateImg',
+              },
+            });
+          }),
+          tap(() => {
+            this.activities$ = this._activityService.getByUserId(this.userId);
+          }),
+        )
         .subscribe((user) => {
           this.user$ = of(user);
-          this._activityService.log({
-            action: {
-              name: `updated ${imgUrl.replaceAll('Url', '')} 📸`,
-              activityType: 'updateImg',
-            },
-          });
+          this._authService.user$.next(user);
         });
     };
   }
@@ -85,15 +94,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private _updateUser(user: Partial<User>) {
     this._userService
       .updateUser(user)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        tap(() => {
+          this._activityService.log({
+            action: {
+              name: `updated about me 🥁`,
+              activityType: 'updateAbout',
+            },
+          });
+        }),
+      )
       .subscribe((user) => {
-        this.user$ = of(user);
-        this._activityService.log({
-          action: {
-            name: `updated about me 🥁`,
-            activityType: 'updateAbout',
-          },
-        });
+        this._authService.user$.next(user);
       });
   }
 

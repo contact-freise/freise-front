@@ -3,7 +3,7 @@ import { appImports, toolbar } from '../../app.config';
 import { AuthService } from '../../services/auth.service';
 import { ActivityService } from '../../services/activity.service';
 import { Editor, Toolbar } from 'ngx-editor';
-import { Observable, take } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post';
 import { User } from '../../models/user';
@@ -47,15 +47,19 @@ export class HomeComponent implements OnInit, OnDestroy {
         ...post,
         author: user._id,
       })
-      .pipe(take(1))
-      .subscribe((post) => {
-        this._activityService.log({
-          action: {
-            name: `created a new post 📝 :`,
-            activityType: 'createPost',
-          },
-          post: post._id,
-        });
+      .pipe(
+        take(1),
+        tap((post: Post) => {
+          this._activityService.log({
+            action: {
+              name: `created a new post 📝 :`,
+              activityType: 'createPost',
+            },
+            post: post._id,
+          });
+        }),
+      )
+      .subscribe(() => {
         this.post = new Post();
       });
   }

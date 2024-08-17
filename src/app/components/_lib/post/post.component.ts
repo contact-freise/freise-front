@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { appImports } from '../../../app.config';
 import { Post } from '../../../models/post';
 import { PostService } from '../../../services/post.service';
-import { take } from 'rxjs';
+import { take, tap } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
 import * as _ from 'lodash';
 import { ActivityService } from '../../../services/activity.service';
@@ -59,16 +59,20 @@ export class PostComponent implements OnInit {
   like(post: Post) {
     this._postService
       .like(post._id)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        tap(() => {
+          this._activityService.log({
+            action: {
+              name: `liked a post 👍`,
+              activityType: 'likePost',
+            },
+          });
+        }),
+      )
       .subscribe(() => {
         this.likesCount++;
         this.alreadyLiked = true;
-        this._activityService.log({
-          action: {
-            name: `liked a post 👍`,
-            activityType: 'likePost',
-          },
-        });
       });
   }
 
@@ -85,16 +89,20 @@ export class PostComponent implements OnInit {
   dislike(post: Post) {
     this._postService
       .dislike(post._id)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        tap(() => {
+          this._activityService.log({
+            action: {
+              name: `disliked a post 👎`,
+              activityType: 'dislikePost',
+            },
+          });
+        }),
+      )
       .subscribe(() => {
         this.dislikesCount++;
         this.alreadyDisliked = true;
-        this._activityService.log({
-          action: {
-            name: `disliked a post 👎`,
-            activityType: 'dislikePost',
-          },
-        });
       });
   }
 
