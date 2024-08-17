@@ -4,21 +4,18 @@ import { Activity } from '../../../models/activity';
 import { appImports } from '../../../app.config';
 
 @Component({
-    selector: 'app-activities',
-    templateUrl: './activities.component.html',
-    styleUrls: ['./activities.component.scss'],
-    standalone: true,
-    imports: appImports,
+  selector: 'app-activities',
+  templateUrl: './activities.component.html',
+  styleUrls: ['./activities.component.scss'],
+  standalone: true,
+  imports: appImports,
 })
 export class ActivitiesComponent {
+  @Input() activities$;
 
-    @Input() activities$
+  constructor(private _router: Router) {}
 
-    constructor(
-        private _router: Router,
-    ) { }
-
-    userClick(activity: Activity) {
-        this._router.navigateByUrl(`/users/${activity.user._id}`);
-    }
+  userClick(activity: Activity) {
+    this._router.navigateByUrl(`/users/${activity.user._id}`);
+  }
 }

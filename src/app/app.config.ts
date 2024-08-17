@@ -1,5 +1,15 @@
-import { ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
-import { provideRouter, RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
+import {
+  ApplicationConfig,
+  provideZoneChangeDetection,
+  isDevMode,
+} from '@angular/core';
+import {
+  provideRouter,
+  RouterLink,
+  RouterLinkActive,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
 
 import { routes } from './app.routes';
 import { CommonModule } from '@angular/common';
@@ -56,9 +66,7 @@ import { PostComponent } from './components/_lib/post/post.component';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(
-      withInterceptors([]),
-    ),
+    provideHttpClient(withInterceptors([])),
     provideRouter(routes),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(),
@@ -78,57 +86,54 @@ export const appConfig: ApplicationConfig = {
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
         missingHandler: {
-          useFallbackTranslation: true
-        }
+          useFallbackTranslation: true,
+        },
       },
-      loader: TranslocoHttpLoader
+      loader: TranslocoHttpLoader,
     }),
     provideMarkdown(),
-  ]
+  ],
 };
 
 const MATERIAL_MODULES = [
   MatButtonModule,
   MatButtonToggleModule,
   /*MatIconModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatToolbarModule,
-  MatCardModule,
-  MatProgressSpinnerModule,
-  MatListModule,
-  MatMenuModule,
-  MatSidenavModule,
-  MatExpansionModule,
-  MatTabsModule,
-  MatSelectModule,
-  MatCheckboxModule,
-  MatRadioModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatSlideToggleModule,
-  MatSliderModule,
-  MatAutocompleteModule,
-  MatChipsModule,
-  MatTooltipModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatTableModule,
-  MatBadgeModule,
-  MatStepperModule,
-  MatProgressBarModule,
-  MatRippleModule,
-  MatBottomSheetModule,
-  MatDividerModule,
-  MatGridListModule,
-  MatTreeModule,
-  MatProgressSpinnerModule*/
+MatFormFieldModule,
+MatInputModule,
+MatToolbarModule,
+MatCardModule,
+MatProgressSpinnerModule,
+MatListModule,
+MatMenuModule,
+MatSidenavModule,
+MatExpansionModule,
+MatTabsModule,
+MatSelectModule,
+MatCheckboxModule,
+MatRadioModule,
+MatDatepickerModule,
+MatNativeDateModule,
+MatSlideToggleModule,
+MatSliderModule,
+MatAutocompleteModule,
+MatChipsModule,
+MatTooltipModule,
+MatPaginatorModule,
+MatSortModule,
+MatTableModule,
+MatBadgeModule,
+MatStepperModule,
+MatProgressBarModule,
+MatRippleModule,
+MatBottomSheetModule,
+MatDividerModule,
+MatGridListModule,
+MatTreeModule,
+MatProgressSpinnerModule*/
 ];
 
-const PIPES = [
-  DateAgoPipe,
-  SafeHtmlPipe,
-];
+const PIPES = [DateAgoPipe, SafeHtmlPipe];
 
 const PLUGINS = [
   ToastrModule,
@@ -137,10 +142,7 @@ const PLUGINS = [
   MarkdownModule,
 ];
 
-const APP_STANDALONE = [
-  ActivitiesComponent,
-  PostComponent
-];
+const APP_STANDALONE = [ActivitiesComponent, PostComponent];
 
 export const appImports = [
   CommonModule,

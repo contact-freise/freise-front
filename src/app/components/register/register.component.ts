@@ -19,25 +19,25 @@ export class RegisterComponent {
     private _authService: AuthService,
     private _activityService: ActivityService,
     private _router: Router,
-    private _toastr: ToastrService
-  ) { }
+    private _toastr: ToastrService,
+  ) {}
 
   onSubmit() {
     this._authService.register(this.user).subscribe(
-      res => {
+      (res) => {
         this._authService.initUser(res);
         this._activityService.log({
           action: {
             name: 'joined Freise 🍓',
             activityType: 'register',
-          }
+          },
         });
         this._router.navigate(['/home']);
       },
-      err => {
+      (err) => {
         console.error(err);
         this._toastr.error(err.error.message);
-      }
+      },
     );
   }
 }

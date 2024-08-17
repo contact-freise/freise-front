@@ -1,61 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 h2 {
-    color: #b8112d;
+  color: #b8112d;
 }
 
 h3 {
-    color: #b9203a;
+  color: #b9203a;
 }
 
 h4 {
-    color: #b8475a;
+  color: #b8475a;
 }
 
 a {
-    margin: 20 auto;
-    color: #b9203a;
-    text-decoration-color: #b8475a;
-    cursor: pointer;
+  margin: 20 auto;
+  color: #b9203a;
+  text-decoration-color: #b8475a;
+  cursor: pointer;
 }
 
 small {
-    color: #993c4c83;
+  color: #993c4c83;
 }
 
 .flex {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .space-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .space-around {
-    justify-content: space-around;
+  justify-content: space-around;
 }
 
 @mixin margin($size) {
-    .m-t-#{$size} {
-        margin-top: #{$size}px;
-    }
+  .m-t-#{$size} {
+    margin-top: #{$size}px;
+  }
 
-    .m-b-#{$size} {
-        margin-bottom: #{$size}px;
-    }
+  .m-b-#{$size} {
+    margin-bottom: #{$size}px;
+  }
 
-    .m-r-#{$size} {
-        margin-right: #{$size}px;
-    }
+  .m-r-#{$size} {
+    margin-right: #{$size}px;
+  }
 
-    .m-l-#{$size} {
-        margin-left: #{$size}px;
-    }
+  .m-l-#{$size} {
+    margin-left: #{$size}px;
+  }
 }
 
 @include margin(4);

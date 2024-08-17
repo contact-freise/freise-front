@@ -13,7 +13,13 @@
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">
         <a class="nav-link" [routerLink]="['users', getUserId()]">
-          <img *ngIf="user$ | async as user" class="pp" [src]="user.avatarUrl" width="30" height="30">
+          <img
+            *ngIf="user$ | async as user"
+            class="pp"
+            [src]="user.avatarUrl"
+            width="30"
+            height="30"
+          />
         </a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">

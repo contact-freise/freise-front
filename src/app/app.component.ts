@@ -12,10 +12,9 @@ import { User } from './models/user';
   standalone: true,
   imports: [...appImports],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-
   user$: Observable<User>;
 
   constructor(
@@ -23,17 +22,17 @@ export class AppComponent implements OnInit {
     private _authService: AuthService,
     private _activityService: ActivityService,
     private _userService: UserService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const userId = this.getUserId();
     if (!userId) {
       return;
     }
-    this._userService.getByUserId(userId).subscribe(user => {
+    this._userService.getByUserId(userId).subscribe((user) => {
       this._authService.user$ = of(user);
       this.user$ = this._authService.user$;
-    })
+    });
 
     /*
     const eventSource = new EventSource('sse');
@@ -53,17 +52,18 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this._activityService.post({
-      action: {
-        name: 'logged out 👋',
-        activityType: 'logout',
-      }
-    }).pipe(take(1)).subscribe(
-      () => {
+    this._activityService
+      .post({
+        action: {
+          name: 'logged out 👋',
+          activityType: 'logout',
+        },
+      })
+      .pipe(take(1))
+      .subscribe(() => {
         localStorage.removeItem('authToken');
         localStorage.removeItem('userId');
         this._router.navigate(['/logout']);
-      }
-    );
+      });
   }
 }

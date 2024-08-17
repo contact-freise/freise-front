@@ -10,7 +10,6 @@ import { appImports } from '../../app.config';
   imports: appImports,
 })
 export class LogoutComponent {
-
   /*ngOnInit(): void {
     debugger
     giphy('0UTRbFtkMxAplrohufYco5IY74U8hOes').random('sad hamster', function (err, res) {
@@ -22,5 +21,4 @@ export class LogoutComponent {
       }
     });
   }*/
-
 }

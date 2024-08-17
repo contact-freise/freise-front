@@ -16,7 +16,6 @@ import { Editor, Toolbar } from 'ngx-editor';
   imports: appImports,
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-
   user: string;
   activities = [];
   isLoggedUser = false;
@@ -33,30 +32,32 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private _userService: UserService,
     private _authService: AuthService,
     private _activatedRoute: ActivatedRoute,
-
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this._activatedRoute.params.subscribe((params: Params) => {
       this.user = params['user'];
       this.isLoggedUser = this._authService.getUserId() === this.user;
-      this._userService.getByUserId(this.user).pipe(
-        take(1),
-        switchMap(user => {
-          if (!this.isLoggedUser) {
-            this._activityService.log({
-              action: {
-                name: `visited user 👀`,
-                activityType: 'visitUser',
-              },
-              mentionnedUser: user._id,
-            });
-          }
-          return of(user);
-        })
-      ).subscribe(user => {
-        this.user$ = of(user);
-      });
+      this._userService
+        .getByUserId(this.user)
+        .pipe(
+          take(1),
+          switchMap((user) => {
+            if (!this.isLoggedUser) {
+              this._activityService.log({
+                action: {
+                  name: `visited user 👀`,
+                  activityType: 'visitUser',
+                },
+                mentionnedUser: user._id,
+              });
+            }
+            return of(user);
+          }),
+        )
+        .subscribe((user) => {
+          this.user$ = of(user);
+        });
       this.activities$ = this._activityService.getByUserId(this.user);
     });
   }
@@ -66,32 +67,34 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      this._userService.updateUserImgUrl(this.user, imgUrl, file).pipe(
-        take(1),
-      ).subscribe(user => {
-        this.user$ = of(user);
-        this._activityService.log({
-          action: {
-            name: `updated ${imgUrl.replaceAll('Url', '')} 📸`,
-            activityType: 'updateImg',
-          },
+      this._userService
+        .updateUserImgUrl(this.user, imgUrl, file)
+        .pipe(take(1))
+        .subscribe((user) => {
+          this.user$ = of(user);
+          this._activityService.log({
+            action: {
+              name: `updated ${imgUrl.replaceAll('Url', '')} 📸`,
+              activityType: 'updateImg',
+            },
+          });
         });
-      });
     };
   }
 
   private _updateUser(user: Partial<User>) {
-    this._userService.updateUser(user).pipe(
-      take(1),
-    ).subscribe(user => {
-      this.user$ = of(user);
-      this._activityService.log({
-        action: {
-          name: `updated about me 🥁`,
-          activityType: 'updateAbout',
-        },
+    this._userService
+      .updateUser(user)
+      .pipe(take(1))
+      .subscribe((user) => {
+        this.user$ = of(user);
+        this._activityService.log({
+          action: {
+            name: `updated about me 🥁`,
+            activityType: 'updateAbout',
+          },
+        });
       });
-    });
   }
 
   updateAbout(user: User) {
@@ -112,5 +115,4 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.editor.destroy();
   }
-
 }

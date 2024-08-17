@@ -1,16 +1,34 @@
 <ng-container *transloco="let t">
-    <div *ngIf="user$ | async as user" class="flex m-t-16">
-        <img (click)="userClick(user)" class="pp m-r-16" [src]="user?.avatarUrl" width="60" height="60">
-        <strong>Hello {{ user.username }} !</strong>
-    </div>
-    <div *ngIf="user$ | async as user" class="m-t-8 m-b-8">
-        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-        <ngx-editor [editor]="editor" [(ngModel)]="post.content" [outputFormat]="'html'" [placeholder]="t('home.post_placeholder')"></ngx-editor>
-        <button mat-raised-button color="primary" class="btn btn-primary m-t-8" (click)="createPost(user, post)">{{ t('home.post_submit') }}</button>
-    </div>
+  <div *ngIf="user$ | async as user" class="flex m-t-16">
+    <img
+      (click)="userClick(user)"
+      class="pp m-r-16"
+      [src]="user?.avatarUrl"
+      width="60"
+      height="60"
+    />
+    <strong>Hello {{ user.username }} !</strong>
+  </div>
+  <div *ngIf="user$ | async as user" class="m-t-8 m-b-8">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+    <ngx-editor
+      [editor]="editor"
+      [(ngModel)]="post.content"
+      [outputFormat]="'html'"
+      [placeholder]="t('home.post_placeholder')"
+    ></ngx-editor>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn btn-primary m-t-8"
+      (click)="createPost(user, post)"
+    >
+      {{ t('home.post_submit') }}
+    </button>
+  </div>
 
-    <div class="container mt-10">
-        <h3>{{ t('home.activities') }}</h3>
-        <app-activities [activities$]="activities$"></app-activities>
-    </div>
+  <div class="container mt-10">
+    <h3>{{ t('home.activities') }}</h3>
+    <app-activities [activities$]="activities$"></app-activities>
+  </div>
 </ng-container>

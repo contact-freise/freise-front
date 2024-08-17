@@ -17,7 +17,6 @@ import { Router } from '@angular/router';
   imports: appImports,
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   user$: Observable<User>;
   activities$;
 
@@ -31,11 +30,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _activityService: ActivityService,
     private _postService: PostService,
     private _router: Router,
-
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.user$ = this._authService.getUser()
+    this.user$ = this._authService.getUser();
     this.activities$ = this._activityService.get();
   }
 
@@ -44,25 +42,25 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   createPost(user: User, post: Post) {
-    this._postService.createPost({
-      ...post,
-      author: user._id,
-    }).pipe(
-      take(1),
-    ).subscribe(post => {
-      this._activityService.log({
-        action: {
-          name: `created a new post 📝 :`,
-          activityType: 'createPost',
-        },
-        post: post._id,
+    this._postService
+      .createPost({
+        ...post,
+        author: user._id,
+      })
+      .pipe(take(1))
+      .subscribe((post) => {
+        this._activityService.log({
+          action: {
+            name: `created a new post 📝 :`,
+            activityType: 'createPost',
+          },
+          post: post._id,
+        });
+        this.post = new Post();
       });
-      this.post = new Post();
-    });
   }
 
   ngOnDestroy(): void {
     this.editor.destroy();
   }
-
 }

@@ -1,26 +1,26 @@
 .list-group-item {
-    display: flex;
+  display: flex;
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-    min-height: 80px;
+  min-height: 80px;
 }
 
 a {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .pp {
-    cursor: pointer;
-    object-fit: cover;
-    height: 60px;
+  cursor: pointer;
+  object-fit: cover;
+  height: 60px;
 }
 
 .inline {
-    display: inline-block;
+  display: inline-block;
 }

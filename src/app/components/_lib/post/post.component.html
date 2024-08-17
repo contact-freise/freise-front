@@ -1,19 +1,37 @@
 <ng-container *transloco="let t">
-    <img *ngIf="post.imageUrl" [src]="post.imageUrl" width="100" height="100">
-    <div class="flex inline" [innerHTML]="post.content | safeHtml"></div>
-    <div>
-        <mat-button-toggle-group (change)="likeDislikeChanged($event)" class="like m-r-8"
-            [hideSingleSelectionIndicator]="true">
-            <mat-button-toggle mat-raised-button color="primary" value="like" [checked]="alreadyLiked">
-                {{ likesCount }} {{ t('post.like') }}
-            </mat-button-toggle>
-            <mat-button-toggle mat-raised-button color="primary" value="dislike" [checked]="alreadyDisliked">
-                {{ dislikesCount }} {{ t('post.dislike') }}
-            </mat-button-toggle>
-        </mat-button-toggle-group>
+  <img *ngIf="post.imageUrl" [src]="post.imageUrl" width="100" height="100" />
+  <div class="flex inline" [innerHTML]="post.content | safeHtml"></div>
+  <div>
+    <mat-button-toggle-group
+      (change)="likeDislikeChanged($event)"
+      class="like m-r-8"
+      [hideSingleSelectionIndicator]="true"
+    >
+      <mat-button-toggle
+        mat-raised-button
+        color="primary"
+        value="like"
+        [checked]="alreadyLiked"
+      >
+        {{ likesCount }} {{ t('post.like') }}
+      </mat-button-toggle>
+      <mat-button-toggle
+        mat-raised-button
+        color="primary"
+        value="dislike"
+        [checked]="alreadyDisliked"
+      >
+        {{ dislikesCount }} {{ t('post.dislike') }}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
 
-        <button mat-raised-button color="primary" class="btn btn-primary" (click)="comment(post)">
-            {{ t('post.comment') }}
-        </button>
-    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn btn-primary"
+      (click)="comment(post)"
+    >
+      {{ t('post.comment') }}
+    </button>
+  </div>
 </ng-container>

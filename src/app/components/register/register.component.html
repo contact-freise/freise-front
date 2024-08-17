@@ -6,24 +6,61 @@
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="username">{{ t('register.user') }}</label>
-      <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" required>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        [(ngModel)]="user.username"
+        name="username"
+        required
+      />
     </div>
     <div class="form-group">
       <label for="firstname">{{ t('register.gender') }}</label>
-      <input type="text" class="form-control" id="gender" [(ngModel)]="user.gender" name="gender" required>
+      <input
+        type="text"
+        class="form-control"
+        id="gender"
+        [(ngModel)]="user.gender"
+        name="gender"
+        required
+      />
     </div>
     <div class="form-group">
       <label for="birthdate">{{ t('register.dob') }}</label>
-      <input type="date" class="form-control" id="dob" [(ngModel)]="user.dob" name="dob" required>
+      <input
+        type="date"
+        class="form-control"
+        id="dob"
+        [(ngModel)]="user.dob"
+        name="dob"
+        required
+      />
     </div>
     <div class="form-group">
       <label for="email">{{ t('register.email') }}</label>
-      <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email" required>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        [(ngModel)]="user.email"
+        name="email"
+        required
+      />
     </div>
     <div class="form-group">
       <label for="password">{{ t('register.password') }}</label>
-      <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password" required>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        [(ngModel)]="user.password"
+        name="password"
+        required
+      />
     </div>
-    <button type="submit" class="btn btn-primary">{{ t('register.submit') }}</button>
+    <button type="submit" class="btn btn-primary">
+      {{ t('register.submit') }}
+    </button>
   </form>
 </div>

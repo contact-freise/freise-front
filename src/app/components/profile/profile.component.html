@@ -1,50 +1,93 @@
 <div *transloco="let t" class="container mt-5">
-    <div *ngIf="user$ | async as user; else loading" class="profile">
-        <div>
-            <div class="content">
-                <img *ngIf="user.avatarUrl" class="avatarUrl" [src]="user.avatarUrl">
-                <label *ngIf="isLoggedUser" for="file-upload-avatarUrl" class="profile-file-upload">
-                    📷
-                </label>
-                <label *ngIf="isLoggedUser" for="file-upload-backgroundUrl" class="profile-file-upload">
-                    🌅
-                </label>
-            </div>
-        </div>
-        <img *ngIf="user.backgroundUrl" class="backgroundUrl" [src]="user.backgroundUrl">
-
-        <div class="flex space-between">
-            <input id="file-upload-avatarUrl" type="file" accept="image/*"
-                (change)="onFileChange($event, 'avatarUrl')" />
-
-            <input id="file-upload-backgroundUrl" type="file" accept="image/*"
-                (change)="onFileChange($event, 'backgroundUrl')" />
-        </div>
-        <h2>{{user.username}} <small>{{ user.age ?? '' }}{{ user.gender ?? '' }}</small></h2>
+  <div *ngIf="user$ | async as user; else loading" class="profile">
+    <div>
+      <div class="content">
+        <img *ngIf="user.avatarUrl" class="avatarUrl" [src]="user.avatarUrl" />
+        <label
+          *ngIf="isLoggedUser"
+          for="file-upload-avatarUrl"
+          class="profile-file-upload"
+        >
+          📷
+        </label>
+        <label
+          *ngIf="isLoggedUser"
+          for="file-upload-backgroundUrl"
+          class="profile-file-upload"
+        >
+          🌅
+        </label>
+      </div>
     </div>
+    <img
+      *ngIf="user.backgroundUrl"
+      class="backgroundUrl"
+      [src]="user.backgroundUrl"
+    />
 
-    <div *ngIf="user$ | async as user">
-        <h3>{{ t('profile.about') }}
-            <button *ngIf="isLoggedUser && !editAbout" mat-button color="primary" class="btn btn-primary"
-                (click)="editAbout = true">{{ t('profile.edit') }}</button>
-            <button *ngIf="isLoggedUser && editAbout" mat-raised-button color="primary" class="btn btn-primary"
-                (click)="updateAbout(user)">{{ t('profile.save') }}</button>
-        </h3>
-        <div *ngIf="editAbout">
-            <div class="editor">
-                <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-                <ngx-editor [editor]="editor" [(ngModel)]="user.about" [outputFormat]="'html'"
-                    [placeholder]="t('profile.about_placeholder')"></ngx-editor>
-            </div>
-        </div>
-        <div *ngIf="!editAbout">
-            <markdown [data]="user.about"></markdown>
-        </div>
+    <div class="flex space-between">
+      <input
+        id="file-upload-avatarUrl"
+        type="file"
+        accept="image/*"
+        (change)="onFileChange($event, 'avatarUrl')"
+      />
+
+      <input
+        id="file-upload-backgroundUrl"
+        type="file"
+        accept="image/*"
+        (change)="onFileChange($event, 'backgroundUrl')"
+      />
     </div>
+    <h2>
+      {{ user.username }}
+      <small>{{ user.age ?? '' }}{{ user.gender ?? '' }}</small>
+    </h2>
+  </div>
 
-    <h3>{{ t('profile.activity') }}</h3>
-    <app-activities [activities$]="activities$"></app-activities>
-    <ng-template #loading>
-        <div class="spinner"></div>
-    </ng-template>
+  <div *ngIf="user$ | async as user">
+    <h3>
+      {{ t('profile.about') }}
+      <button
+        *ngIf="isLoggedUser && !editAbout"
+        mat-button
+        color="primary"
+        class="btn btn-primary"
+        (click)="editAbout = true"
+      >
+        {{ t('profile.edit') }}
+      </button>
+      <button
+        *ngIf="isLoggedUser && editAbout"
+        mat-raised-button
+        color="primary"
+        class="btn btn-primary"
+        (click)="updateAbout(user)"
+      >
+        {{ t('profile.save') }}
+      </button>
+    </h3>
+    <div *ngIf="editAbout">
+      <div class="editor">
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+        </ngx-editor-menu>
+        <ngx-editor
+          [editor]="editor"
+          [(ngModel)]="user.about"
+          [outputFormat]="'html'"
+          [placeholder]="t('profile.about_placeholder')"
+        ></ngx-editor>
+      </div>
+    </div>
+    <div *ngIf="!editAbout">
+      <markdown [data]="user.about"></markdown>
+    </div>
+  </div>
+
+  <h3>{{ t('profile.activity') }}</h3>
+  <app-activities [activities$]="activities$"></app-activities>
+  <ng-template #loading>
+    <div class="spinner"></div>
+  </ng-template>
 </div>

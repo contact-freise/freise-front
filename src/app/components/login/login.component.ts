@@ -19,28 +19,26 @@ export class LoginComponent {
     private _authService: AuthService,
     private _activityService: ActivityService,
     private _router: Router,
-    private _toastr: ToastrService
-  ) { }
+    private _toastr: ToastrService,
+  ) {}
 
   onSubmit() {
-    this._authService
-      .login(this.user)
-      .subscribe(
-        res => {
-          this._authService.initUser(res);
+    this._authService.login(this.user).subscribe(
+      (res) => {
+        this._authService.initUser(res);
 
-          this._activityService.log({
-            action: {
-              name: 'logged in 🚀',
-              activityType: 'login',
-            }
-          });
-          this._router.navigate(['/home']);
-        },
-        err => {
-          console.error(err);
-          this._toastr.error(err.error.message);
-        }
-      );
+        this._activityService.log({
+          action: {
+            name: 'logged in 🚀',
+            activityType: 'login',
+          },
+        });
+        this._router.navigate(['/home']);
+      },
+      (err) => {
+        console.error(err);
+        this._toastr.error(err.error.message);
+      },
+    );
   }
 }

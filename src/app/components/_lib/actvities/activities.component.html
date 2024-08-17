@@ -1,18 +1,26 @@
 <ng-container *transloco="let t">
-    <ul class="list-group">
-        <li class="list-group-item" *ngFor="let activity of activities$ | async">
-            <img (click)="userClick(activity)" class="pp m-r-16" [src]="activity.user?.avatarUrl" width="60"
-                height="60">
-            <div>
-                <div>
-                    <a class="flex inline" (click)="userClick(activity)">
-                        {{ activity.user?.username }}
-                    </a>
-                    <div class="flex inline" [innerHTML]="activity.action.name | safeHtml"></div>
-                </div>
-                <app-post *ngIf="activity.post" [post]="activity.post"></app-post>
-                <small>{{ activity.createdAt | dateAgo }}</small>
-            </div>
-        </li>
-    </ul>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let activity of activities$ | async">
+      <img
+        (click)="userClick(activity)"
+        class="pp m-r-16"
+        [src]="activity.user?.avatarUrl"
+        width="60"
+        height="60"
+      />
+      <div>
+        <div>
+          <a class="flex inline" (click)="userClick(activity)">
+            {{ activity.user?.username }}
+          </a>
+          <div
+            class="flex inline"
+            [innerHTML]="activity.action.name | safeHtml"
+          ></div>
+        </div>
+        <app-post *ngIf="activity.post" [post]="activity.post"></app-post>
+        <small>{{ activity.createdAt | dateAgo }}</small>
+      </div>
+    </li>
+  </ul>
 </ng-container>
