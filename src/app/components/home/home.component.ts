@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     ).subscribe(post => {
       this._activityService.log({
         action: {
-          name: `created a new post 📝`,
+          name: `created a new post 📝 :`,
           activityType: 'createPost',
         },
         post: post._id,

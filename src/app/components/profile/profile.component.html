@@ -25,13 +25,16 @@
 
     <div *ngIf="user$ | async as user">
         <h3>{{ t('profile.about') }}
-            <button *ngIf="isLoggedUser && !editAbout" mat-button color="primary" class="btn btn-primary" (click)="editAbout = true">Edit</button>
-            <button *ngIf="isLoggedUser && editAbout" mat-raised-button color="primary" class="btn btn-primary" (click)="updateAbout(user)">Save</button>
+            <button *ngIf="isLoggedUser && !editAbout" mat-button color="primary" class="btn btn-primary"
+                (click)="editAbout = true">{{ t('profile.edit') }}</button>
+            <button *ngIf="isLoggedUser && editAbout" mat-raised-button color="primary" class="btn btn-primary"
+                (click)="updateAbout(user)">{{ t('profile.save') }}</button>
         </h3>
         <div *ngIf="editAbout">
             <div class="editor">
                 <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-                <ngx-editor [editor]="editor" [(ngModel)]="user.about" [outputFormat]="'html'"></ngx-editor>
+                <ngx-editor [editor]="editor" [(ngModel)]="user.about" [outputFormat]="'html'"
+                    [placeholder]="t('profile.about_placeholder')"></ngx-editor>
             </div>
         </div>
         <div *ngIf="!editAbout">

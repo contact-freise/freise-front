@@ -2,7 +2,7 @@
   "app": {
     "logo": "🍓",
     "title": "Freise",
-    "already-registered": "Already registered?",
+    "already_registered": "Already registered?",
     "login": "Connect",
     "register": "Register",
     "logout": "Logout"
@@ -23,16 +23,25 @@
     "user": "Username or email",
     "password": "Password",
     "submit": "Login to Freise 🚀",
-    "forgot-password": "Forgot your password?",
+    "forgot_password": "Forgot your password?",
     "register": "Not registered yet? Create an account"
   },
   "home": {
-    "activities": "Latest activities"
+    "activities": "Latest activities",
+    "post_placeholder": "What's new?",
+    "post_submit": "Post"
+  },
+  "activity": {
+    "like": "👍",
+    "dislike": "👎",
+    "comment": "💬"
   },
   "profile": {
     "activity": "Activity",
     "about": "About",
-    "about-placeholder": "About me..."
+    "about_placeholder": "About me...",
+    "edit": "Edit",
+    "save": "Save"
   },
   "logout": {
     "title": "Bye bye tho!",

@@ -1,12 +1,12 @@
 <ng-container *transloco="let t">
-    <div class="flex m-t-8">
+    <div class="flex m-t-16">
         <img class="pp m-r-16" [src]="user?.avatarUrl" width="60" height="60">
         <strong>Hello {{ user.username }} !</strong>
     </div>
     <div class="m-t-8 m-b-8">
         <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-        <ngx-editor [editor]="editor" [(ngModel)]="post.content" [outputFormat]="'html'"></ngx-editor>
-        <button mat-raised-button color="primary" class="btn btn-primary m-t-8" (click)="createPost(post)">Save</button>
+        <ngx-editor [editor]="editor" [(ngModel)]="post.content" [outputFormat]="'html'" [placeholder]="t('home.post_placeholder')"></ngx-editor>
+        <button mat-raised-button color="primary" class="btn btn-primary m-t-8" (click)="createPost(post)">{{ t('home.post_submit') }}</button>
     </div>
 
     <div class="container mt-10">

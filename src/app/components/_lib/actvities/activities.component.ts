@@ -25,4 +25,24 @@ export class ActivitiesComponent implements OnInit {
         this.router.navigateByUrl(`/users/${activity.user._id}`);
     }
 
+    /*postClick(activity: Activity) {
+        this.router.navigateByUrl(`/posts/${activity.post._id}`);
+    }
+
+    userMentionnedClick(activity: Activity) {
+        this.router.navigateByUrl(`/users/${activity.mentionnedUser._id}`);
+    }*/
+
+    like(activity: Activity) {
+        console.log('like', activity);
+    }
+
+    
+    dislike(activity: Activity) {
+        console.log('dislike', activity);
+    }
+    
+    comment(activity: Activity) {
+        console.log('comment', activity);
+    }
 }
