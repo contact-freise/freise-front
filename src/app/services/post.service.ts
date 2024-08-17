@@ -32,7 +32,7 @@ export class PostService {
 
   unlike(post: string): Observable<Post> {
     return this._http.delete<Post>(
-      `${environment.API_URL}/unlike/${post}`,
+      `${environment.API_URL}/like/${post}`,
       this._authService.getHttpOptions(),
     );
   }
@@ -47,7 +47,7 @@ export class PostService {
 
   undislike(post: string): Observable<Post> {
     return this._http.delete<Post>(
-      `${environment.API_URL}/undislike/${post}`,
+      `${environment.API_URL}/dislike/${post}`,
       this._authService.getHttpOptions(),
     );
   }

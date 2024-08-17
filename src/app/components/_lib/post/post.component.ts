@@ -74,7 +74,7 @@ export class PostComponent implements OnInit {
 
   unlike(post: Post) {
     this._postService
-      .like(post._id)
+      .unlike(post._id)
       .pipe(take(1))
       .subscribe(() => {
         this.likesCount--;
@@ -100,7 +100,7 @@ export class PostComponent implements OnInit {
 
   undislike(post: Post) {
     this._postService
-      .dislike(post._id)
+      .undislike(post._id)
       .pipe(take(1))
       .subscribe(() => {
         this.dislikesCount--;
