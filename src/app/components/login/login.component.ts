@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { appImports } from '../../app.config';
+import { APP_IMPORTS } from '../../app.config';
 import { ActivityService } from '../../services/activity.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ActivityService } from '../../services/activity.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: appImports,
+  imports: APP_IMPORTS,
 })
 export class LoginComponent {
   user = { username: '', password: '', remember: false };

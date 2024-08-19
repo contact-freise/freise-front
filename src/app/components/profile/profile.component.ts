@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { appImports, toolbar } from '../../app.config';
+import { APP_IMPORTS } from '../../app.config';
 import { Observable, of, switchMap, take, tap } from 'rxjs';
 import { ActivityService } from '../../services/activity.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -7,13 +7,14 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
 import { Editor, Toolbar } from 'ngx-editor';
+import { TOOLBAR } from '../../app.const';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone: true,
-  imports: appImports,
+  imports: APP_IMPORTS,
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   userId: string;
@@ -25,7 +26,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   editAbout = false;
   editor: Editor = new Editor();
-  toolbar: Toolbar = toolbar;
+  toolbar: Toolbar = TOOLBAR;
 
   constructor(
     private _authService: AuthService,

@@ -86,9 +86,9 @@
   </div>
 
   <h3>{{ t('profile.activity') }}</h3>
-  <app-activities [activities$]="activities$"></app-activities>
+  <app-activities [activities]="activities$ | async"></app-activities>
 
   <ng-template #loading>
-    <div class="spinner"></div>
+    <mat-spinner></mat-spinner>
   </ng-template>
 </div>

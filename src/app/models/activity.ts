@@ -6,4 +6,9 @@ export class Activity {
   user: User;
   mentionnedUser: User;
   post: Post;
+  action: {
+    name: string;
+    activityType: string;
+  };
+  createdAt: Date;
 }

@@ -4,6 +4,8 @@ import { Observable, take } from 'rxjs';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 import { Activity } from '../models/activity';
+import { PaginatedResult } from '../models/_utils/paginated-result';
+import { SCROLL_LIMIT } from '../app.const';
 
 @Injectable({
   providedIn: 'root',
@@ -29,16 +31,20 @@ export class ActivityService {
         })*/
   }
 
-  get(): Observable<Activity> {
-    return this.http.get<Activity>(
-      `${environment.API_URL}/activity`,
+  get(page = 1, limit = SCROLL_LIMIT): Observable<PaginatedResult<Activity>> {
+    return this.http.get<PaginatedResult<Activity>>(
+      `${environment.API_URL}/activity?page=${page}&limit=${limit}`,
       this._authService.getHttpOptions(),
     );
   }
 
-  getByUserId(user: string): Observable<Activity> {
-    return this.http.get<Activity>(
-      `${environment.API_URL}/activity/${user}`,
+  getByUserId(
+    user: string,
+    page = 1,
+    limit = SCROLL_LIMIT,
+  ): Observable<PaginatedResult<Activity>> {
+    return this.http.get<PaginatedResult<Activity>>(
+      `${environment.API_URL}/activity/${user}?page=${page}&limit=${limit}`,
       this._authService.getHttpOptions(),
     );
   }

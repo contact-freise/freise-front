@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { appImports, toolbar } from '../../app.config';
+import { APP_IMPORTS } from '../../app.config';
 import { AuthService } from '../../services/auth.service';
 import { ActivityService } from '../../services/activity.service';
 import { Editor, Toolbar } from 'ngx-editor';
@@ -8,20 +8,23 @@ import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { PaginatedResult } from '../../models/_utils/paginated-result';
+import { Activity } from '../../models/activity';
+import { TOOLBAR } from '../../app.const';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: appImports,
+  imports: APP_IMPORTS,
 })
 export class HomeComponent implements OnInit, OnDestroy {
   user$: Observable<User>;
-  activities$;
+  activities$: Observable<PaginatedResult<Activity>>;
 
   editor: Editor = new Editor();
-  toolbar: Toolbar = toolbar;
+  toolbar: Toolbar = TOOLBAR;
 
   post: Post = new Post();
 

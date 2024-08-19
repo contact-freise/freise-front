@@ -36,6 +36,11 @@ export class AuthService {
     return !!localStorage.getItem('authToken');
   }
 
+  isSameUser(user: string | User): boolean {
+    const userId = typeof user === 'string' ? user : user._id;
+    return userId === this.getUserId();
+  }
+
   getUser(): Observable<User> {
     const user = this.getUserId();
     if (!user) {

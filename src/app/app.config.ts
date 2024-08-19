@@ -17,9 +17,10 @@ import { FormsModule } from '@angular/forms';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { MarkdownModule, provideMarkdown } from 'ngx-markdown';
-import { NgxEditorModule, Toolbar } from 'ngx-editor';
+import { NgxEditorModule } from 'ngx-editor';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideTransloco, TranslocoModule } from '@jsverse/transloco';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { DateAgoPipe } from './components/_pipes/date-ago.pipe';
 import { SafeHtmlPipe } from './components/_pipes/safe-html.pipe';
@@ -27,13 +28,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 /*
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatCardModule } from '@angular/material/card';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -98,12 +99,13 @@ export const appConfig: ApplicationConfig = {
 const MATERIAL_MODULES = [
   MatButtonModule,
   MatButtonToggleModule,
-  /*MatIconModule,
+  MatProgressSpinnerModule,
+  MatCardModule,
+  /*
+MatIconModule,
 MatFormFieldModule,
 MatInputModule,
 MatToolbarModule,
-MatCardModule,
-MatProgressSpinnerModule,
 MatListModule,
 MatMenuModule,
 MatSidenavModule,
@@ -130,7 +132,8 @@ MatBottomSheetModule,
 MatDividerModule,
 MatGridListModule,
 MatTreeModule,
-MatProgressSpinnerModule*/
+MatProgressSpinnerModule
+*/
 ];
 
 const PIPES = [DateAgoPipe, SafeHtmlPipe];
@@ -140,11 +143,12 @@ const PLUGINS = [
   TranslocoModule,
   NgxEditorModule,
   MarkdownModule,
+  InfiniteScrollDirective,
 ];
 
 const APP_STANDALONE = [ActivitiesComponent, PostComponent];
 
-export const appImports = [
+export const APP_IMPORTS = [
   CommonModule,
   CommonModule,
   FormsModule,
@@ -156,12 +160,4 @@ export const appImports = [
   ...MATERIAL_MODULES,
   ...PIPES,
   ...PLUGINS,
-];
-
-export const toolbar: Toolbar = [
-  ['bold', 'italic'],
-  ['underline', 'strike'],
-  ['code', 'blockquote'],
-  ['ordered_list', 'bullet_list'],
-  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
 ];

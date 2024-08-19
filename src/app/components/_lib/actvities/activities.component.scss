@@ -11,6 +11,10 @@ li {
   min-height: 80px;
 }
 
+.item {
+  width: 100%;
+}
+
 a {
   margin-right: 8px;
 }
@@ -19,6 +23,7 @@ a {
   cursor: pointer;
   object-fit: cover;
   height: 60px;
+  border-radius: 50%;
 }
 
 .inline {

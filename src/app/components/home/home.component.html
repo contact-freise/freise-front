@@ -29,6 +29,6 @@
 
   <div class="container mt-10">
     <h3>{{ t('home.activities') }}</h3>
-    <app-activities [activities$]="activities$"></app-activities>
+    <app-activities [activities]="activities$ | async"></app-activities>
   </div>
 </ng-container>

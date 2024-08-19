@@ -1,26 +1,53 @@
 <ng-container *transloco="let t">
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let activity of activities$ | async">
+  <ul
+    class="list-group"
+    infiniteScroll
+    [infiniteScrollDistance]="scrollDistance"
+    [infiniteScrollThrottle]="throttle"
+    (scrolled)="onScroll()"
+    [scrollWindow]="true"
+  >
+    <li class="list-group-item" *ngFor="let activity of activities?.data">
       <img
-        (click)="userClick(activity)"
+        (click)="userClick(activity.user)"
         class="pp m-r-16"
         [src]="activity.user?.avatarUrl"
         width="60"
         height="60"
       />
-      <div>
+      <div class="item">
         <div>
-          <a class="flex inline" (click)="userClick(activity)">
+          <a class="flex inline" (click)="userClick(activity.user)">
             {{ activity.user?.username }}
           </a>
           <div
             class="flex inline"
             [innerHTML]="activity.action.name | safeHtml"
           ></div>
+          <div *ngIf="activity.mentionnedUser" class="flex m-t-8">
+            <img
+              (click)="userClick(activity.mentionnedUser)"
+              class="pp m-r-16"
+              [src]="activity.mentionnedUser?.avatarUrl"
+              width="60"
+              height="60"
+            />
+            <div>
+              <div>
+                <a
+                  class="flex inline"
+                  (click)="userClick(activity.mentionnedUser)"
+                >
+                  {{ activity.mentionnedUser.username }}
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
         <app-post *ngIf="activity.post" [post]="activity.post"></app-post>
         <small>{{ activity.createdAt | dateAgo }}</small>
       </div>
     </li>
   </ul>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
 </ng-container>

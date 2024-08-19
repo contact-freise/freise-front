@@ -36,6 +36,7 @@
     "giphy-api": "^2.0.2",
     "marked": "^12.0.2",
     "ngx-editor": "^17.5.4",
+    "ngx-infinite-scroll": "^18.0.0",
     "ngx-markdown": "^18.0.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",

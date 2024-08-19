@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { appImports } from '../../../app.config';
+import { APP_IMPORTS } from '../../../app.config';
 import { Post } from '../../../models/post';
 import { PostService } from '../../../services/post.service';
 import { take, tap } from 'rxjs';
@@ -12,7 +12,7 @@ import { ActivityService } from '../../../services/activity.service';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
   standalone: true,
-  imports: appImports,
+  imports: APP_IMPORTS,
 })
 export class PostComponent implements OnInit {
   likesCount: number;
@@ -67,6 +67,8 @@ export class PostComponent implements OnInit {
               name: `liked a post 👍`,
               activityType: 'likePost',
             },
+            mentionnedUser: post.author,
+            post: post._id,
           });
         }),
       )

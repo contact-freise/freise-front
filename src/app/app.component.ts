@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { appImports } from './app.config';
+import { APP_IMPORTS } from './app.config';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ActivityService } from './services/activity.service';
@@ -9,7 +9,7 @@ import { UserService } from './services/user.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [...appImports],
+  imports: [...APP_IMPORTS],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { appImports } from '../../app.config';
+import { APP_IMPORTS } from '../../app.config';
 // var giphy = require('giphy-api')();
 
 @Component({
@@ -7,7 +7,7 @@ import { appImports } from '../../app.config';
   templateUrl: './logout.component.html',
   styleUrls: ['./logout.component.scss'],
   standalone: true,
-  imports: appImports,
+  imports: APP_IMPORTS,
 })
 export class LogoutComponent {
   /*ngOnInit(): void {

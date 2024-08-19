@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 import { Post } from '../models/post';
+import { Like } from '../models/like';
 
 @Injectable({
   providedIn: 'root',
@@ -22,31 +23,31 @@ export class PostService {
     );
   }
 
-  like(post: string): Observable<Post> {
-    return this._http.post<Post>(
+  like(post: string): Observable<Like> {
+    return this._http.post<Like>(
       `${environment.API_URL}/like/${post}`,
       {},
       this._authService.getHttpOptions(),
     );
   }
 
-  unlike(post: string): Observable<Post> {
-    return this._http.delete<Post>(
+  unlike(post: string): Observable<Like> {
+    return this._http.delete<Like>(
       `${environment.API_URL}/like/${post}`,
       this._authService.getHttpOptions(),
     );
   }
 
-  dislike(post: string): Observable<Post> {
-    return this._http.post<Post>(
+  dislike(post: string): Observable<Like> {
+    return this._http.post<Like>(
       `${environment.API_URL}/dislike/${post}`,
       {},
       this._authService.getHttpOptions(),
     );
   }
 
-  undislike(post: string): Observable<Post> {
-    return this._http.delete<Post>(
+  undislike(post: string): Observable<Like> {
+    return this._http.delete<Like>(
       `${environment.API_URL}/dislike/${post}`,
       this._authService.getHttpOptions(),
     );
