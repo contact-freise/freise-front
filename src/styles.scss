@@ -1,3 +1,7 @@
+$primary-color: #b9203a;
+$secondary-color: #b8475a;
+$tertiary-color: #b8112d;
+
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -39,21 +43,21 @@ body {
 }
 
 h2 {
-  color: #b8112d;
+  color: $secondary-color;
 }
 
 h3 {
-  color: #b9203a;
+  color: $primary-color;
 }
 
 h4 {
-  color: #b8475a;
+  color: $tertiary-color;
 }
 
 a {
   margin: 20 auto;
-  color: #b9203a;
-  text-decoration-color: #b8475a;
+  color: $primary-color;
+  text-decoration-color: $secondary-color;
   cursor: pointer;
 }
 

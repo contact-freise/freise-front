@@ -29,7 +29,9 @@
   "home": {
     "activities": "Latest activities",
     "post_placeholder": "What's new?",
-    "post_submit": "Post"
+    "post_submit": "Post",
+    "post_title": "Title (optional)",
+    "add_picture": "Add a picture"
   },
   "post": {
     "like": "👍",
@@ -41,7 +43,22 @@
     "about": "About",
     "about_placeholder": "About me...",
     "edit": "Edit",
-    "save": "Save"
+    "save": "Save",
+    "update_avatar": "Update avatar",
+    "update_background": "Update cover"
+  },
+  "activity": {
+    "register": "Joined Freise 🍓",
+    "login": "logged in 🚀",
+    "visitUser": "visited user 👀",
+    "createPost": "created a new post 📝",
+    "likePost": "liked a post 👍",
+    "dislikePost": "disliked a post 👎",
+    "commentPost": "commented a post 💬",
+    "updateProfile": "updated their profile 📝",
+    "updateAvatar": "updated their avatar 📸",
+    "updateBackground": "updated their cover 🖼️",
+    "logout": "logged out 👋"
   },
   "logout": {
     "title": "Bye bye tho!",

@@ -9,3 +9,29 @@
   height: 60px;
   border-radius: 50%;
 }
+
+input[type='file'] {
+  display: none;
+}
+
+.home-file-upload {
+  display: inline-block;
+  margin: 8px 8px;
+  padding: 12px 13px;
+  cursor: pointer;
+  background-color: #353535bd;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.image-upload-container {
+  margin: 20px;
+}
+
+.preview-container img {
+  max-width: 100px;
+  max-height: 100px;
+  display: block;
+  margin-top: 10px;
+}

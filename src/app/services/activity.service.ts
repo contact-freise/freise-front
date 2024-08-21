@@ -22,10 +22,7 @@ export class ActivityService {
                 event.url !== '/login' && event.url !== '/register') {
                 
                 this.post({
-                    action: {
-                        name: `accessed ` + event.url + ` 🤫`,
-                        activityType: 'navigation',
-                    },
+                    type: 'navigation'
                 }).pipe(take(1)).subscribe();
             }
         })*/

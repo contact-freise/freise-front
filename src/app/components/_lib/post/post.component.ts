@@ -21,7 +21,8 @@ export class PostComponent implements OnInit {
   alreadyLiked = false;
   alreadyDisliked = false;
 
-  @Input() post: Post;
+  @Input() post: Post = new Post();
+  @Input() activityType: string;
 
   constructor(
     private _postService: PostService,
@@ -63,10 +64,7 @@ export class PostComponent implements OnInit {
         take(1),
         tap(() => {
           this._activityService.log({
-            action: {
-              name: `liked a post 👍`,
-              activityType: 'likePost',
-            },
+            type: 'likePost',
             mentionnedUser: post.author,
             post: post._id,
           });
@@ -95,10 +93,9 @@ export class PostComponent implements OnInit {
         take(1),
         tap(() => {
           this._activityService.log({
-            action: {
-              name: `disliked a post 👎`,
-              activityType: 'dislikePost',
-            },
+            type: 'dislikePost',
+            mentionnedUser: post.author,
+            post: post._id,
           });
         }),
       )

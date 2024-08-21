@@ -1,3 +1,10 @@
+@import '../../../../styles.scss';
+
+.imageUrl {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+}
 .like {
   background-color: white;
 
@@ -5,4 +12,14 @@
     color: black;
     background-color: white;
   }
+}
+
+.selected-toggle {
+  background-color: $primary-color !important;
+  color: white !important;
+}
+
+.unselected-toggle {
+  background-color: #f1f1f1 !important;
+  color: black !important;
 }

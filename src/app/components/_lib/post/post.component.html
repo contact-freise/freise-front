@@ -1,7 +1,13 @@
 <mat-card *transloco="let t">
-  <img *ngIf="post.imageUrl" [src]="post.imageUrl" width="100" height="100" />
-  <div class="flex inline" [innerHTML]="post.content | safeHtml"></div>
-  <div>
+  <h3 *ngIf="post.title">{{ post.title }}</h3>
+  <img *ngIf="post.imageUrl" [src]="post.imageUrl" class="imageUrl" />
+  <div
+    *ngIf="post.content"
+    class="flex inline"
+    [innerHTML]="post.content | safeHtml"
+    class="m-t-16"
+  ></div>
+  <div *ngIf="!activityType || activityType === 'createPost'" class="m-t-16">
     <mat-button-toggle-group
       (change)="likeDislikeChanged($event)"
       class="like m-r-8"
@@ -12,6 +18,10 @@
         color="primary"
         value="like"
         [checked]="alreadyLiked"
+        [ngClass]="{
+          'selected-toggle': alreadyLiked,
+          'unselected-toggle': !alreadyLiked,
+        }"
       >
         {{ likesCount }} {{ t('post.like') }}
       </mat-button-toggle>
@@ -20,6 +30,10 @@
         color="primary"
         value="dislike"
         [checked]="alreadyDisliked"
+        [ngClass]="{
+          'selected-toggle': alreadyDisliked,
+          'unselected-toggle': !alreadyDisliked,
+        }"
       >
         {{ dislikesCount }} {{ t('post.dislike') }}
       </mat-button-toggle>

@@ -3,7 +3,7 @@ import { APP_IMPORTS } from '../../app.config';
 import { AuthService } from '../../services/auth.service';
 import { ActivityService } from '../../services/activity.service';
 import { Editor, Toolbar } from 'ngx-editor';
-import { Observable, take, tap } from 'rxjs';
+import { finalize, Observable, take, tap } from 'rxjs';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post';
 import { User } from '../../models/user';
@@ -21,12 +21,17 @@ import { TOOLBAR } from '../../app.const';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   user$: Observable<User>;
-  activities$: Observable<PaginatedResult<Activity>>;
 
   editor: Editor = new Editor();
   toolbar: Toolbar = TOOLBAR;
 
   post: Post = new Post();
+  imagePreview: string | ArrayBuffer | null = null;
+  file: File;
+
+  activities$: Observable<PaginatedResult<Activity>>;
+
+  isLoading = false;
 
   constructor(
     private _authService: AuthService,
@@ -45,26 +50,47 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   createPost(user: User, post: Post) {
+    this.isLoading = true;
     this._postService
-      .createPost({
-        ...post,
-        author: user._id,
-      })
+      .createPost(
+        {
+          ...post,
+          author: user._id,
+        },
+        this.file,
+      )
       .pipe(
         take(1),
         tap((post: Post) => {
           this._activityService.log({
-            action: {
-              name: `created a new post 📝 :`,
-              activityType: 'createPost',
-            },
+            type: 'createPost',
             post: post._id,
           });
+        }),
+        tap(() => {
+          this.activities$ = this._activityService.get();
+        }),
+        finalize(() => {
+          this.isLoading = false;
         }),
       )
       .subscribe(() => {
         this.post = new Post();
+        this.file = null;
+        this.imagePreview = null;
       });
+  }
+
+  onFileSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+        this.file = file;
+      };
+    }
   }
 
   ngOnDestroy(): void {

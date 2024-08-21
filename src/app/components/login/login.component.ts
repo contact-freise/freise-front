@@ -28,10 +28,7 @@ export class LoginComponent {
         this._authService.initUser(res);
 
         this._activityService.log({
-          action: {
-            name: 'logged in 🚀',
-            activityType: 'login',
-          },
+          type: 'login',
         });
         this._router.navigate(['/home']);
       },

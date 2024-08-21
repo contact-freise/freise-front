@@ -7,47 +7,53 @@
     (scrolled)="onScroll()"
     [scrollWindow]="true"
   >
-    <li class="list-group-item" *ngFor="let activity of activities?.data">
-      <img
-        (click)="userClick(activity.user)"
-        class="pp m-r-16"
-        [src]="activity.user?.avatarUrl"
-        width="60"
-        height="60"
-      />
-      <div class="item">
-        <div>
-          <a class="flex inline" (click)="userClick(activity.user)">
-            {{ activity.user?.username }}
-          </a>
-          <div
-            class="flex inline"
-            [innerHTML]="activity.action.name | safeHtml"
-          ></div>
-          <div *ngIf="activity.mentionnedUser" class="flex m-t-8">
-            <img
-              (click)="userClick(activity.mentionnedUser)"
-              class="pp m-r-16"
-              [src]="activity.mentionnedUser?.avatarUrl"
-              width="60"
-              height="60"
-            />
-            <div>
+    <div *ngFor="let activity of activities?.data" class="m-b-16">
+      <li class="list-group-item">
+        <img
+          (click)="userClick(activity.user)"
+          class="pp m-r-16"
+          [src]="activity.user?.avatarUrl"
+          width="60"
+          height="60"
+        />
+        <div class="item">
+          <div>
+            <a class="flex inline" (click)="userClick(activity.user)">
+              {{ activity.user?.username }}
+            </a>
+            <div class="flex inline">
+              {{ t('activity.' + activity.type) }}
+            </div>
+            <div *ngIf="activity.mentionnedUser" class="flex m-t-8">
+              <img
+                (click)="userClick(activity.mentionnedUser)"
+                class="pp m-r-16"
+                [src]="activity.mentionnedUser?.avatarUrl"
+                width="60"
+                height="60"
+              />
               <div>
-                <a
-                  class="flex inline"
-                  (click)="userClick(activity.mentionnedUser)"
-                >
-                  {{ activity.mentionnedUser.username }}
-                </a>
+                <div>
+                  <a
+                    class="flex inline"
+                    (click)="userClick(activity.mentionnedUser)"
+                  >
+                    {{ activity.mentionnedUser.username }}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
+
+          <small>{{ activity.createdAt | dateAgo }}</small>
         </div>
-        <app-post *ngIf="activity.post" [post]="activity.post"></app-post>
-        <small>{{ activity.createdAt | dateAgo }}</small>
-      </div>
-    </li>
+      </li>
+      <app-post
+        *ngIf="activity.post"
+        [post]="activity.post"
+        [activityType]="activity.type"
+      ></app-post>
+    </div>
   </ul>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
 </ng-container>

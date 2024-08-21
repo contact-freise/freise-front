@@ -9,7 +9,12 @@
     />
     <strong>Hello {{ user.username }} !</strong>
   </div>
-  <div *ngIf="user$ | async as user" class="m-t-8 m-b-8">
+  <mat-card *ngIf="user$ | async as user" class="m-t-8">
+    <input
+      class="title"
+      [(ngModel)]="post.title"
+      placeholder="{{ t('home.post_title') }}"
+    />
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
     <ngx-editor
       [editor]="editor"
@@ -17,15 +22,35 @@
       [outputFormat]="'html'"
       [placeholder]="t('home.post_placeholder')"
     ></ngx-editor>
-    <button
-      mat-raised-button
-      color="primary"
-      class="btn btn-primary m-t-8"
-      (click)="createPost(user, post)"
-    >
-      {{ t('home.post_submit') }}
-    </button>
-  </div>
+    <div class="flex m-t-8">
+      <input
+        id="home-file-upload"
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+      />
+      <div *ngIf="imagePreview" class="preview-container">
+        <img [src]="imagePreview" />
+      </div>
+      <label
+        for="home-file-upload"
+        class="home-file-upload"
+        [matTooltip]="t('home.add_picture')"
+      >
+        🌅
+      </label>
+      <button
+        [disabled]="
+          isLoading || (!file && !post.content) || post.content === '<p></p>'
+        "
+        mat-flat-button
+        color="primary"
+        (click)="createPost(user, post)"
+      >
+        {{ t('home.post_submit') }}
+      </button>
+    </div>
+  </mat-card>
 
   <div class="container mt-10">
     <h3>{{ t('home.activities') }}</h3>

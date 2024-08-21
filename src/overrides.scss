@@ -1,16 +1,21 @@
+@import 'styles.scss';
+
 .NgxEditor__MenuBar {
-  color: #b9203a;
+  color: $primary-color;
   border-radius: 3px;
   margin: 0px 1px;
 }
 
 .NgxEditor__Content {
   p {
-    color: #b9203a;
+    color: $primary-color;
   }
 }
 
 mat-card {
-  margin-top: 4px;
   padding: 20px;
+}
+
+.mat-mdc-tab-body-wrapper {
+  padding: 16px 0px;
 }

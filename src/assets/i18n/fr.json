@@ -29,7 +29,9 @@
   "home": {
     "activities": "Dernières activités",
     "post_placeholder": "Quoi de neuf ?",
-    "post_submit": "Publier"
+    "post_submit": "Publier",
+    "post_title": "Titre (optionnel)",
+    "add_picture": "Ajouter une photo"
   },
   "post": {
     "like": "👍",
@@ -41,7 +43,22 @@
     "about": "À propos",
     "about_placeholder": "À propos de moi...",
     "edit": "Éditer",
-    "save": "Sauvegarder"
+    "save": "Sauvegarder",
+    "update_avatar": "Mettre à jour la photo de profil",
+    "update_background": "Mettre à jour la bannière"
+  },
+  "activity": {
+    "register": "a rejoint Freise 🍓",
+    "login": "s'est connecté 🚀",
+    "visitUser": "a visité le profil 👀",
+    "createPost": "a créé un nouveau post 📝",
+    "likePost": "a aimé un post 👍",
+    "dislikePost": "n'a pas aimé un post 👎",
+    "commentPost": "a commenté un post 💬",
+    "updateProfile": "a mis à jour son profil 📝",
+    "updateAvatar": "a mis à jour sa photo de profil 📸",
+    "updateBackground": "a mis à jour sa bannière 🖼️",
+    "logout": "s'est déconnecté 👋"
   },
   "logout": {
     "title": "Allez salut hein !",

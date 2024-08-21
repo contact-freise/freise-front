@@ -50,10 +50,7 @@ export class AppComponent implements OnInit {
   logout() {
     this._activityService
       .post({
-        action: {
-          name: 'logged out 👋',
-          activityType: 'logout',
-        },
+        type: 'logout',
       })
       .pipe(take(1))
       .subscribe(() => {

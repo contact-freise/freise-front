@@ -5,7 +5,6 @@ export class Post {
   author: string | User;
   title: string;
   content: string;
-  tags: string[];
   imageUrl: string;
 
   likesCount: number;

@@ -27,10 +27,7 @@ export class RegisterComponent {
       (res) => {
         this._authService.initUser(res);
         this._activityService.log({
-          action: {
-            name: 'joined Freise 🍓',
-            activityType: 'register',
-          },
+          type: 'register',
         });
         this._router.navigate(['/home']);
       },

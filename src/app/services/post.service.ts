@@ -15,10 +15,13 @@ export class PostService {
     private _authService: AuthService,
   ) {}
 
-  createPost(post: Post): Observable<Post> {
+  createPost(post: Post, file: File): Observable<Post> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('post', JSON.stringify(post));
     return this._http.post<Post>(
       `${environment.API_URL}/posts`,
-      post,
+      formData,
       this._authService.getHttpOptions(),
     );
   }

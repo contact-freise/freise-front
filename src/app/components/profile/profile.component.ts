@@ -47,10 +47,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           switchMap((user) => {
             if (!this.isLoggedUser) {
               this._activityService.log({
-                action: {
-                  name: `visited user 👀`,
-                  activityType: 'visitUser',
-                },
+                type: 'visitUser',
                 mentionnedUser: user._id,
               });
             }
@@ -65,7 +62,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   onFileChange(event, user: User, imgUrl: 'avatarUrl' | 'backgroundUrl') {
-    const file = event.target.files[0];
+    const file = (event.target as HTMLInputElement).files?.[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
@@ -75,10 +72,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
           take(1),
           tap(() => {
             this._activityService.log({
-              action: {
-                name: `updated ${imgUrl.replaceAll('Url', '')} 📸`,
-                activityType: 'updateImg',
-              },
+              type:
+                imgUrl === 'avatarUrl' ? 'updateAvatar' : 'updateBackground',
             });
           }),
           tap(() => {
@@ -99,10 +94,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         take(1),
         tap(() => {
           this._activityService.log({
-            action: {
-              name: `updated about me 🥁`,
-              activityType: 'updateAbout',
-            },
+            type: 'updateProfile',
           });
         }),
       )

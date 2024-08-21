@@ -30,6 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
 /*
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -39,7 +41,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
@@ -49,7 +50,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -101,6 +101,8 @@ const MATERIAL_MODULES = [
   MatButtonToggleModule,
   MatProgressSpinnerModule,
   MatCardModule,
+  MatTooltipModule,
+  MatTabsModule,
   /*
 MatIconModule,
 MatFormFieldModule,
@@ -110,7 +112,6 @@ MatListModule,
 MatMenuModule,
 MatSidenavModule,
 MatExpansionModule,
-MatTabsModule,
 MatSelectModule,
 MatCheckboxModule,
 MatRadioModule,
@@ -120,7 +121,6 @@ MatSlideToggleModule,
 MatSliderModule,
 MatAutocompleteModule,
 MatChipsModule,
-MatTooltipModule,
 MatPaginatorModule,
 MatSortModule,
 MatTableModule,
