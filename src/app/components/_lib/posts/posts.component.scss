@@ -1,0 +1,16 @@
+.list-group-item {
+  display: flex;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  min-height: 65px;
+}
+
+.item {
+  width: 100%;
+}

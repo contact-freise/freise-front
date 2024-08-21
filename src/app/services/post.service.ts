@@ -5,6 +5,8 @@ import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 import { Post } from '../models/post';
 import { Like } from '../models/like';
+import { SCROLL_LIMIT } from '../app.const';
+import { PaginatedResult } from '../models/_utils/paginated-result';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +16,18 @@ export class PostService {
     private _http: HttpClient,
     private _authService: AuthService,
   ) {}
+
+  getByAuthor(
+    author: string,
+    isPicture: boolean,
+    page = 1,
+    limit = SCROLL_LIMIT,
+  ): Observable<PaginatedResult<Post>> {
+    return this._http.get<PaginatedResult<Post>>(
+      `${environment.API_URL}/posts/${author}?isPicture=${isPicture}&page=${page}&limit=${limit}`,
+      this._authService.getHttpOptions(),
+    );
+  }
 
   createPost(post: Post, file: File): Observable<Post> {
     const formData = new FormData();

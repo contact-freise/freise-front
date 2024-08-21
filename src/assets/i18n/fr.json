@@ -45,7 +45,9 @@
     "edit": "Éditer",
     "save": "Sauvegarder",
     "update_avatar": "Mettre à jour la photo de profil",
-    "update_background": "Mettre à jour la bannière"
+    "update_background": "Mettre à jour la bannière",
+    "pictures": "Photos",
+    "writings": "Écrits"
   },
   "activity": {
     "register": "a rejoint Freise 🍓",

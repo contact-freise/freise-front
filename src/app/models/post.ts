@@ -6,9 +6,9 @@ export class Post {
   title: string;
   content: string;
   imageUrl: string;
-
   likesCount: number;
   likes: string[];
   dislikes: string[];
   dislikesCount: number;
+  createdAt: Date;
 }

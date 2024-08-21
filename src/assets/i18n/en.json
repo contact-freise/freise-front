@@ -45,7 +45,9 @@
     "edit": "Edit",
     "save": "Save",
     "update_avatar": "Update avatar",
-    "update_background": "Update cover"
+    "update_background": "Update cover",
+    "pictures": "Pictures",
+    "writings": "Writings"
   },
   "activity": {
     "register": "Joined Freise 🍓",

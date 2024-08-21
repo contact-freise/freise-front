@@ -12,7 +12,7 @@ import { SCROLL_LIMIT } from '../app.const';
 })
 export class ActivityService {
   constructor(
-    private http: HttpClient,
+    private _http: HttpClient,
     private _authService: AuthService,
   ) {
     // Log the user's navigation activity
@@ -29,7 +29,7 @@ export class ActivityService {
   }
 
   get(page = 1, limit = SCROLL_LIMIT): Observable<PaginatedResult<Activity>> {
-    return this.http.get<PaginatedResult<Activity>>(
+    return this._http.get<PaginatedResult<Activity>>(
       `${environment.API_URL}/activity?page=${page}&limit=${limit}`,
       this._authService.getHttpOptions(),
     );
@@ -40,14 +40,14 @@ export class ActivityService {
     page = 1,
     limit = SCROLL_LIMIT,
   ): Observable<PaginatedResult<Activity>> {
-    return this.http.get<PaginatedResult<Activity>>(
+    return this._http.get<PaginatedResult<Activity>>(
       `${environment.API_URL}/activity/${user}?page=${page}&limit=${limit}`,
       this._authService.getHttpOptions(),
     );
   }
 
   post(payload): Observable<Activity> {
-    return this.http.post<Activity>(
+    return this._http.post<Activity>(
       `${environment.API_URL}/activity`,
       payload,
       this._authService.getHttpOptions(),

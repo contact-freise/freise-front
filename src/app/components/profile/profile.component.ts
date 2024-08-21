@@ -8,6 +8,10 @@ import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
 import { Editor, Toolbar } from 'ngx-editor';
 import { TOOLBAR } from '../../app.const';
+import { PostService } from '../../services/post.service';
+import { Activity } from '../../models/activity';
+import { PaginatedResult } from '../../models/_utils/paginated-result';
+import { Post } from '../../models/post';
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +26,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   isLoggedUser = false;
 
   user$: Observable<User>;
-  activities$;
+  activities$: Observable<PaginatedResult<Activity>>;
+  pictures$: Observable<PaginatedResult<Post>>;
+  writings$: Observable<PaginatedResult<Post>>;
 
   editAbout = false;
   editor: Editor = new Editor();
@@ -32,6 +38,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private _authService: AuthService,
     private _userService: UserService,
     private _activityService: ActivityService,
+    private _postService: PostService,
     private _activatedRoute: ActivatedRoute,
   ) {}
 
@@ -58,16 +65,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.user$ = of(user);
         });
       this.activities$ = this._activityService.getByUserId(this.userId);
+      this.pictures$ = this._postService.getByAuthor(this.userId, true);
+      this.writings$ = this._postService.getByAuthor(this.userId, false);
     });
   }
 
-  onFileChange(event, user: User, imgUrl: 'avatarUrl' | 'backgroundUrl') {
+  onFileChange(event, imgUrl: 'avatarUrl' | 'backgroundUrl') {
     const file = (event.target as HTMLInputElement).files?.[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
       this._userService
-        .updateUserImgUrl(user._id, imgUrl, file)
+        .updateUserImgUrl(imgUrl, file)
         .pipe(
           take(1),
           tap(() => {

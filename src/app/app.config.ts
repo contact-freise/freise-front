@@ -63,6 +63,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTreeModule } from '@angular/material/tree';
 */
 import { ActivitiesComponent } from './components/_lib/actvities/activities.component';
+import { PostsComponent } from './components/_lib/posts/posts.component';
 import { PostComponent } from './components/_lib/post/post.component';
 
 export const appConfig: ApplicationConfig = {
@@ -146,7 +147,7 @@ const PLUGINS = [
   InfiniteScrollDirective,
 ];
 
-const APP_STANDALONE = [ActivitiesComponent, PostComponent];
+const APP_STANDALONE = [ActivitiesComponent, PostsComponent, PostComponent];
 
 export const APP_IMPORTS = [
   CommonModule,

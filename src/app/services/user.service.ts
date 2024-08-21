@@ -22,14 +22,13 @@ export class UserService {
   }
 
   updateUserImgUrl(
-    user: string,
     imgUrl: 'avatarUrl' | 'backgroundUrl',
     file: File,
   ): Observable<User> {
     const formData = new FormData();
     formData.append('file', file);
     return this._http.post<User>(
-      `${environment.API_URL}/users/${user}/${imgUrl}/upload`,
+      `${environment.API_URL}/users/${imgUrl}/upload`,
       formData,
       this._authService.getHttpOptions(),
     );
@@ -37,7 +36,7 @@ export class UserService {
 
   updateUser(user: Partial<User>): Observable<User> {
     return this._http.put<User>(
-      `${environment.API_URL}/users/${user._id}`,
+      `${environment.API_URL}/users`,
       user,
       this._authService.getHttpOptions(),
     );

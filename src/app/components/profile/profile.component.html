@@ -32,14 +32,14 @@
         id="file-upload-avatarUrl"
         type="file"
         accept="image/*"
-        (change)="onFileChange($event, user, 'avatarUrl')"
+        (change)="onFileChange($event, 'avatarUrl')"
       />
 
       <input
         id="file-upload-backgroundUrl"
         type="file"
         accept="image/*"
-        (change)="onFileChange($event, user, 'backgroundUrl')"
+        (change)="onFileChange($event, 'backgroundUrl')"
       />
     </div>
     <h2>
@@ -85,14 +85,28 @@
     </div>
   </div>
 
-  <mat-tab-group animationDuration="1500ms">
-    <mat-tab [label]="t('profile.activity')">
-      <app-activities [activities]="activities$ | async"></app-activities>
-    </mat-tab>
+  <ng-container *ngIf="user$ | async as user">
+    <mat-tab-group animationDuration="1000ms">
+      <mat-tab [label]="t('profile.activity')">
+        <app-activities [activities]="activities$ | async"></app-activities>
+      </mat-tab>
 
-    <mat-tab label="t('profile.pictures')"> </mat-tab>
-    <mat-tab label="t('profile.posts')"> </mat-tab>
-  </mat-tab-group>
+      <mat-tab [label]="t('profile.pictures')">
+        <app-posts
+          [posts]="pictures$ | async"
+          [author]="user._id"
+          [isPicture]="true"
+        ></app-posts>
+      </mat-tab>
+      <mat-tab [label]="t('profile.writings')">
+        <app-posts
+          [posts]="writings$ | async"
+          [author]="user._id"
+          [isPicture]="false"
+        ></app-posts>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-container>
 
   <ng-template #loading>
     <mat-spinner></mat-spinner>
