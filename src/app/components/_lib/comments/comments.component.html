@@ -1,0 +1,31 @@
+<div class="comments-section">
+  <div *ngFor="let comment of comments" class="comment">
+    <div class="flex flex-center">
+      <ng-container *ngIf="isUser(comment.author); else stringAuthor">
+        <img
+          class="pp m-r-16"
+          [src]="comment.author.avatarUrl"
+          width="60"
+          height="60"
+        />
+        {{ comment.author.username }}
+      </ng-container>
+      <ng-template #stringAuthor>
+        {{ comment.author }}
+      </ng-template>
+      <small class="m-l-8">{{ comment.createdAt | dateAgo }}</small>
+    </div>
+    <div class="m-t-4">{{ comment.content }}</div>
+  </div>
+
+  <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+    <input
+      formControlName="content"
+      ngxMention
+      [mentionConfig]="mentionConfig"
+    />
+    <button *ngIf="commentForm.value.content" type="submit">
+      Post Comment
+    </button>
+  </form>
+</div>

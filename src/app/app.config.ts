@@ -13,7 +13,7 @@ import {
 
 import { routes } from './app.routes';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { MarkdownModule, provideMarkdown } from 'ngx-markdown';
@@ -21,6 +21,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideTransloco, TranslocoModule } from '@jsverse/transloco';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { MentionModule } from 'angular-mentions';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { DateAgoPipe } from './components/_pipes/date-ago.pipe';
 import { SafeHtmlPipe } from './components/_pipes/safe-html.pipe';
@@ -32,6 +33,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDividerModule } from '@angular/material/divider';
 /*
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -58,13 +60,13 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRippleModule } from '@angular/material/core';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTreeModule } from '@angular/material/tree';
 */
 import { ActivitiesComponent } from './components/_lib/actvities/activities.component';
 import { PostsComponent } from './components/_lib/posts/posts.component';
 import { PostComponent } from './components/_lib/post/post.component';
+import { CommentsComponent } from './components/_lib/comments/comments.component';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -104,6 +106,7 @@ const MATERIAL_MODULES = [
   MatCardModule,
   MatTooltipModule,
   MatTabsModule,
+  MatDividerModule,
   /*
 MatIconModule,
 MatFormFieldModule,
@@ -130,7 +133,6 @@ MatStepperModule,
 MatProgressBarModule,
 MatRippleModule,
 MatBottomSheetModule,
-MatDividerModule,
 MatGridListModule,
 MatTreeModule,
 MatProgressSpinnerModule
@@ -145,14 +147,21 @@ const PLUGINS = [
   NgxEditorModule,
   MarkdownModule,
   InfiniteScrollDirective,
+  MentionModule,
 ];
 
-const APP_STANDALONE = [ActivitiesComponent, PostsComponent, PostComponent];
+const APP_STANDALONE = [
+  ActivitiesComponent,
+  PostsComponent,
+  PostComponent,
+  CommentsComponent,
+];
 
 export const APP_IMPORTS = [
   CommonModule,
   CommonModule,
   FormsModule,
+  ReactiveFormsModule,
   RouterModule,
   RouterOutlet,
   RouterLink,

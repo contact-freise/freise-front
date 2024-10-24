@@ -1,0 +1,70 @@
+{
+  "app": {
+    "logo": "🍓",
+    "title": "Freise",
+    "already_registered": "Already registered?",
+    "login": "Connect",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "register": {
+    "welcome": "Freise can't wait to welcome you 🍓",
+    "subtitle": "But first, let's introduce ourselves 🤝",
+    "user": "Username",
+    "gender": "Gender",
+    "dob": "Date of birth",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Ok, let's go 😎"
+  },
+  "login": {
+    "welcome": "Welcome (back) to Freise 🍓",
+    "subtitle": "You didn't return here by accident 😏 And we missed you!",
+    "user": "Username or email",
+    "password": "Password",
+    "submit": "Login to Freise 🚀",
+    "forgot_password": "Forgot your password?",
+    "register": "Not registered yet? Create an account"
+  },
+  "home": {
+    "activities": "Latest activities",
+    "post_placeholder": "What's new?",
+    "post_submit": "Post",
+    "post_title": "Title (optional)",
+    "add_picture": "Add a picture"
+  },
+  "post": {
+    "like": "👍",
+    "dislike": "👎",
+    "comment": "💬"
+  },
+  "profile": {
+    "activity": "Activity",
+    "about": "About",
+    "about_placeholder": "About me...",
+    "edit": "Edit",
+    "save": "Save",
+    "update_avatar": "Update avatar",
+    "update_background": "Update cover",
+    "pictures": "Pictures",
+    "writings": "Writings"
+  },
+  "activity": {
+    "register": "Joined Freise 🍓",
+    "login": "logged in 🚀",
+    "visitUser": "visited user 👀",
+    "createPost": "created a new post 📝",
+    "likePost": "liked a post 👍",
+    "dislikePost": "disliked a post 👎",
+    "commentPost": "commented a post 💬",
+    "updateProfile": "updated their profile 📝",
+    "updateAvatar": "updated their avatar 📸",
+    "updateBackground": "updated their cover 🖼️",
+    "logout": "logged out 👋"
+  },
+  "logout": {
+    "title": "Bye bye tho!",
+    "subtitle": "We hope to see you soon 👋",
+    "login": "Reconnect"
+  }
+}
