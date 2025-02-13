@@ -20,3 +20,22 @@ export class AuthGuard implements CanActivate {
     }
   }
 }
+
+@Injectable({
+  providedIn: 'root',
+})
+export class WelcomeGuard implements CanActivate {
+  constructor(
+    private _authService: AuthService,
+    private _router: Router,
+  ) {}
+
+  canActivate(): boolean {
+    const user = localStorage.getItem('welcomed');
+    if (user) {
+      this._router.navigate(['/login']);
+      return false;
+    }
+    return true;
+  }
+}

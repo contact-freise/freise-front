@@ -1,8 +1,11 @@
 .navbar {
-  background-color: #2d000e;
   border-bottom: 1px solid #e9ecef36;
   padding-right: 15px;
   align-items: center;
+  background: linear-gradient(135deg, 
+    rgba(10,10,10,0.95) 0%, 
+    rgba(139,0,0,0.85) 75%,
+    rgba(10,10,10,0.95) 100%);
 }
 
 .navbar-brand {

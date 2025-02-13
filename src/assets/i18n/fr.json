@@ -7,6 +7,22 @@
     "register": "Inscription",
     "logout": "Déconnexion"
   },
+  "welcome": {
+    "welcome": "🍓 FREISE",
+    "subtitle": "Le premier réseau social qui combine également site de rencontres gratuit et rémunère votre créativité avec de la crypto",
+    "start": "Commencer",
+    "about": "En savoir plus",
+    "features": "Découvrez nos fonctionnalités",
+    "features_1_1": "Réseau Social",
+    "features_1_2": "Connectez-vous avec des personnes partageant vos intérêts. Créez, partagez et interagissez avec des posts, des photos et des vidéos",
+    "features_2_1": "Rencontres",
+    "features_2_2": "Trouvez l'amour ou de nouveaux amis, Découvrez des personnes à proximité ou dans le monde entier, discutez en toute sécurité grâce à la blockchain",
+    "features_3_1": "Paiements en $FREISE",
+    "features_3_2": "Gagnez des $FREISE, notre cryptomonnaie dédiée pour toutes vos transactions sur la plateforme, en créant du contenu, en interagissant avec la communauté, en participant à des challenges, en parrainant des amis, etc.",
+    "cta_title": "Rejoignez dès maintenant la révolution couleur FREISE!",
+    "cta_subtitle": "Créez votre compte dès maintenant et recevez 100 $FREISE gratuites",
+    "cta_button": "S'inscrire maintenant"
+  },
   "register": {
     "welcome": "Freise a hâte de t'accueillir 🍓",
     "subtitle": "Mais avant toute chose, les présentations ! 🤝",
