@@ -1,4 +1,4 @@
-$primary-color: #b9203a;
+$primary-color: #8b0000;
 $secondary-color: #b8475a;
 $tertiary-color: #b8112d;
 
@@ -40,6 +40,10 @@ $freise-app-theme: mat.define-theme(
 html,
 body {
   height: 100%;
+}
+
+h1 {
+  color: $primary-color;
 }
 
 h2 {
@@ -109,4 +113,55 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+
+/* Global styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 3px;
+}
+
+.btn {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background-color: #8b0000;
+  color: white;
+  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: #a00000;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
+}
+
+.section {
+  padding: 100px 0;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #8b0000, #cc0000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }

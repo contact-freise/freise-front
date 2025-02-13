@@ -39,10 +39,10 @@
       </mat-button-toggle>
     </mat-button-toggle-group>
 
-    <button mat-raised-button color="primary" (click)="comment(post)">
-      {{ t('post.comment') }}
+    <button mat-raised-button color="primary" (click)="seeComments = !seeComments">
+      {{ post.commentsCount }} {{ t('post.comment') }}
     </button>
   </div>
-  <app-comments [post]="post"></app-comments>
+  <app-comments *ngIf="seeComments" [post]="post"></app-comments>
   <small class="m-t-16">{{ post.createdAt | dateAgo }}</small>
 </mat-card>

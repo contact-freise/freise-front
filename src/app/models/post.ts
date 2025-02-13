@@ -10,5 +10,6 @@ export class Post {
   likes: string[];
   dislikes: string[];
   dislikesCount: number;
+  commentsCount: number;
   createdAt: Date;
 }

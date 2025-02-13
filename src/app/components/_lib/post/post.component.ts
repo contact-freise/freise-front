@@ -21,6 +21,9 @@ export class PostComponent implements OnInit {
   alreadyLiked = false;
   alreadyDisliked = false;
 
+  commentsCount: number = 0;
+  seeComments = false;
+
   @Input() post: Post = new Post();
   @Input() activityType: string;
 

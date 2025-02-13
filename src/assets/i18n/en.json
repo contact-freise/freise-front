@@ -7,6 +7,22 @@
     "register": "Register",
     "logout": "Logout"
   },
+  "welcome": {
+    "welcome": "🍓 FREISE",
+    "subtitle": "The first social network that also combines a free dating site and rewards your creativity with cryptocurrency",
+    "start": "Start",
+    "about": "Learn more",
+    "features": "Discover our features",
+    "features_1_1": "Social Network",
+    "features_1_2": "Connect with people who share your interests. Create, share, and interact with posts, photos, and videos",
+    "features_2_1": "Dating",
+    "features_2_2": "Find new friends (or even love), discover people nearby or around the world, chat securely thanks to blockchain",
+    "features_3_1": "Payments in $FREISE",
+    "features_3_2": "Earn $FREISE, our dedicated cryptocurrency for all your transactions on the platform, by creating content, interacting with the community, participating in challenges, referring friends, etc.",
+    "cta_title": "Join the FREISE color revolution now!",
+    "cta_subtitle": "Create your account now and receive 100 free $FREISE",
+    "cta_button": "Sign up now"
+  },
   "register": {
     "welcome": "Freise can't wait to welcome you 🍓",
     "subtitle": "But first, let's introduce ourselves 🤝",

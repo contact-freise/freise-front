@@ -1,0 +1,102 @@
+<div *transloco="let t" class="landing-page">
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="logo-container">
+          <h1 class="gradient-text">{{t('welcome.welcome')}}</h1>
+          <div class="logo-glow"></div>
+        </div>
+        <p class="subtitle">{{t('welcome.subtitle')}}</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary">
+            <span class="btn-content">
+              <span class="btn-icon">🚀</span>
+              <span (click)="goTo('register')">{{t('welcome.start')}}</span>
+            </span>
+          </button>
+          <button class="btn btn-secondary">
+            <span class="btn-content">
+              <span class="btn-icon">🍓</span>
+              <span (click)="scrollToElement(about)">{{t('welcome.about')}}</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-particles"></div>
+  </header>
+
+  <!-- Features Section -->
+  <section #about class="section features">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="gradient-text section-title">{{t('welcome.features')}}</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">🌐</div>
+            <div class="icon-glow"></div>
+          </div>
+          <div class="feature-image-container">
+            
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500" alt="Social Network"
+              class="feature-image">
+            <div class="image-overlay"></div>
+          </div>
+          <h3>{{t('welcome.features_1_1')}}</h3>
+          <p>{{t('welcome.features_1_2')}}</p>
+          <div class="feature-hover-effect"></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">❤️</div>
+            <div class="icon-glow"></div>
+          </div>
+          <div class="feature-image-container">
+            <img src="https://images.unsplash.com/photo-1546198632-9ef6368bef12?w=500" alt="Dating"
+              class="feature-image">
+            <div class="image-overlay"></div>
+          </div>
+          <h3>{{t('welcome.features_2_1')}}</h3>
+          <p>{{t('welcome.features_2_2')}}</p>
+          <div class="feature-hover-effect"></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">💎</div>
+            <div class="icon-glow"></div>
+          </div>
+          <div class="feature-image-container">
+            <img src="https://images.unsplash.com/photo-1595475207225-428b62bda831?w=500" alt="Crypto"
+              class="feature-image">
+            <div class="image-overlay"></div>
+          </div>
+          <h3>{{t('welcome.features_3_1')}}</h3>
+          <p>{{t('welcome.features_3_2')}}</p>
+          <div class="feature-hover-effect"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>{{t('welcome.cta_title')}}</h2>
+        <p>{{t('welcome.cta_subtitle')}}</p>
+        <button class="btn btn-primary glow-effect">
+          <span class="btn-content">
+            <span class="btn-icon">🎁</span>
+            <span (click)="goTo('register')">{{t('welcome.cta_button')}}</span>
+          </span>
+        </button>
+      </div>
+      <div class="cta-particles"></div>
+    </div>
+  </section>
+</div>

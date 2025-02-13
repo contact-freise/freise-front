@@ -29,6 +29,8 @@ export class AuthService {
     localStorage.setItem('userId', res.user._id);
     this.userId = res.user._id;
 
+    localStorage.setItem('welcomed', 'true');
+
     this.user$.next(res.user);
   }
 
