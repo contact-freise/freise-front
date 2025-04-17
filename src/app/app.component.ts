@@ -5,13 +5,11 @@ import { AuthService } from './services/auth.service';
 import { ActivityService } from './services/activity.service';
 import { take } from 'rxjs';
 import { UserService } from './services/user.service';
-
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [...APP_IMPORTS],
+  imports: APP_IMPORTS,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   constructor(
@@ -19,7 +17,7 @@ export class AppComponent implements OnInit {
     private _activityService: ActivityService,
     private _userService: UserService,
     private _router: Router,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const userId = this.getUserId();

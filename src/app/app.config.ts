@@ -26,6 +26,7 @@ import { TranslocoHttpLoader } from './transloco-loader';
 import { DateAgoPipe } from './components/_pipes/date-ago.pipe';
 import { SafeHtmlPipe } from './components/_pipes/safe-html.pipe';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideServiceWorker } from '@angular/service-worker';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -63,10 +64,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTreeModule } from '@angular/material/tree';
 */
-import { ActivitiesComponent } from './components/_lib/actvities/activities.component';
-import { PostsComponent } from './components/_lib/posts/posts.component';
-import { PostComponent } from './components/_lib/post/post.component';
-import { CommentsComponent } from './components/_lib/comments/comments.component';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -96,10 +94,14 @@ export const appConfig: ApplicationConfig = {
       loader: TranslocoHttpLoader,
     }),
     provideMarkdown(),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
 };
 
-const MATERIAL_MODULES = [
+export const MATERIAL_MODULES = [
   MatButtonModule,
   MatButtonToggleModule,
   MatProgressSpinnerModule,
@@ -139,7 +141,7 @@ MatProgressSpinnerModule
 */
 ];
 
-const PIPES = [DateAgoPipe, SafeHtmlPipe];
+const APP_PIPES = [DateAgoPipe, SafeHtmlPipe];
 
 const PLUGINS = [
   ToastrModule,
@@ -150,12 +152,6 @@ const PLUGINS = [
   MentionModule,
 ];
 
-const APP_STANDALONE = [
-  ActivitiesComponent,
-  PostsComponent,
-  PostComponent,
-  CommentsComponent,
-];
 
 export const APP_IMPORTS = [
   CommonModule,
@@ -166,8 +162,7 @@ export const APP_IMPORTS = [
   RouterOutlet,
   RouterLink,
   RouterLinkActive,
-  ...APP_STANDALONE,
+  ...APP_PIPES,
   ...MATERIAL_MODULES,
-  ...PIPES,
   ...PLUGINS,
 ];

@@ -5,13 +5,16 @@ import { PaginatedResult } from '../../../models/_utils/paginated-result';
 import { SCROLL_LIMIT } from '../../../app.const';
 import { finalize } from 'rxjs';
 import { PostService } from '../../../services/post.service';
+import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss'],
-  standalone: true,
-  imports: APP_IMPORTS,
+  imports: [
+    ...APP_IMPORTS || [],
+    PostComponent,
+  ]
 })
 export class PostsComponent {
   @Input() posts: PaginatedResult<Post> = {
@@ -28,7 +31,7 @@ export class PostsComponent {
   scrollDistance = 1;
   isLoading = false;
 
-  constructor(private _postSevice: PostService) {}
+  constructor(private _postSevice: PostService) { }
 
   onScroll() {
     if (this.isLoading) return;

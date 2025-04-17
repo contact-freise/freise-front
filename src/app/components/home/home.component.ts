@@ -11,13 +11,16 @@ import { Router } from '@angular/router';
 import { PaginatedResult } from '../../models/_utils/paginated-result';
 import { Activity } from '../../models/activity';
 import { TOOLBAR } from '../../app.const';
+import { ActivitiesComponent } from '../_lib/actvities/activities.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: true,
-  imports: APP_IMPORTS,
+  imports: [
+    ...APP_IMPORTS || [],
+    ActivitiesComponent,
+  ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   user$: Observable<User>;
@@ -38,7 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _activityService: ActivityService,
     private _postService: PostService,
     private _router: Router,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.user$ = this._authService.getUser();

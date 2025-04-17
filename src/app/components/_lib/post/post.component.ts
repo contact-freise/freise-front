@@ -6,13 +6,16 @@ import { take, tap } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
 import * as _ from 'lodash';
 import { ActivityService } from '../../../services/activity.service';
+import { CommentsComponent } from '../comments/comments.component';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
-  standalone: true,
-  imports: APP_IMPORTS,
+  imports: [
+    ...APP_IMPORTS || [],
+    CommentsComponent,
+  ],
 })
 export class PostComponent implements OnInit {
   likesCount: number;

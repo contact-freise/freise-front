@@ -9,7 +9,6 @@ import { ActivityService } from '../../services/activity.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  standalone: true,
   imports: APP_IMPORTS,
 })
 export class LoginComponent {

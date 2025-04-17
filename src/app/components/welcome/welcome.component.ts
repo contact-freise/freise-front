@@ -7,7 +7,6 @@ import { APP_IMPORTS } from '../../app.config';
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
-  standalone: true,
   imports: APP_IMPORTS,
 })
 export class WelcomeComponent {

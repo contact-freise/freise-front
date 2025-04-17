@@ -11,7 +11,6 @@ import { User } from '../../../models/user';
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss'],
-  standalone: true,
   imports: APP_IMPORTS,
 })
 export class CommentsComponent implements OnInit {

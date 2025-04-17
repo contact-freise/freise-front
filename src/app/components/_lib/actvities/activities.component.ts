@@ -7,13 +7,16 @@ import { PaginatedResult } from '../../../models/_utils/paginated-result';
 import { SCROLL_LIMIT } from '../../../app.const';
 import { User } from '../../../models/user';
 import { finalize } from 'rxjs';
+import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-activities',
   templateUrl: './activities.component.html',
   styleUrls: ['./activities.component.scss'],
-  standalone: true,
-  imports: APP_IMPORTS,
+  imports: [ 
+    ...APP_IMPORTS || [],
+    PostComponent,
+  ]
 })
 export class ActivitiesComponent {
   @Input() activities: PaginatedResult<Activity> = {

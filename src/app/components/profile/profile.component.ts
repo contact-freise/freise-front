@@ -12,13 +12,18 @@ import { PostService } from '../../services/post.service';
 import { Activity } from '../../models/activity';
 import { PaginatedResult } from '../../models/_utils/paginated-result';
 import { Post } from '../../models/post';
+import { PostsComponent } from '../_lib/posts/posts.component';
+import { ActivitiesComponent } from '../_lib/actvities/activities.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  standalone: true,
-  imports: APP_IMPORTS,
+  imports: [ 
+    ...APP_IMPORTS || [],
+    ActivitiesComponent,
+    PostsComponent,
+  ]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   userId: string;
