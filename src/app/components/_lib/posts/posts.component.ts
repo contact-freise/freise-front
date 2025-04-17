@@ -29,9 +29,12 @@ export class PostsComponent {
   limit = SCROLL_LIMIT;
   throttle = 300;
   scrollDistance = 1;
+
+  isGalleryView = true;
+
   isLoading = false;
 
-  constructor(private _postSevice: PostService) { }
+  constructor(private _postSevice: PostService) {}
 
   onScroll() {
     if (this.isLoading) return;

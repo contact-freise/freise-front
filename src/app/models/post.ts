@@ -5,7 +5,7 @@ export class Post {
   author: string | User;
   title: string;
   content: string;
-  imageUrl: string;
+  mediaUrl: string;
   likesCount: number;
   likes: string[];
   dislikes: string[];

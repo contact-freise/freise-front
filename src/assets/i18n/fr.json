@@ -47,7 +47,7 @@
     "post_placeholder": "Quoi de neuf ?",
     "post_submit": "Publier",
     "post_title": "Titre (optionnel)",
-    "add_picture": "Ajouter une photo"
+    "add_media": "Joindre une photo / video / audio"
   },
   "post": {
     "like": "👍",
@@ -62,7 +62,7 @@
     "save": "Sauvegarder",
     "update_avatar": "Mettre à jour la photo de profil",
     "update_background": "Mettre à jour la bannière",
-    "pictures": "Photos",
+    "medias": "Medias",
     "writings": "Écrits"
   },
   "activity": {

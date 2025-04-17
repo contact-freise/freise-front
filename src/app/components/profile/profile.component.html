@@ -3,44 +3,23 @@
     <div>
       <div class="content">
         <img *ngIf="user.avatarUrl" class="avatarUrl" [src]="user.avatarUrl" />
-        <label
-          *ngIf="isLoggedUser"
-          for="file-upload-avatarUrl"
-          [matTooltip]="t('profile.update_avatar')"
-          class="profile-file-upload"
-        >
+        <label *ngIf="isLoggedUser" for="file-upload-avatarUrl" [matTooltip]="t('profile.update_avatar')"
+          class="profile-file-upload">
           📷
         </label>
-        <label
-          *ngIf="isLoggedUser"
-          for="file-upload-backgroundUrl"
-          [matTooltip]="t('profile.update_background')"
-          class="profile-file-upload"
-        >
+        <label *ngIf="isLoggedUser" for="file-upload-backgroundUrl" [matTooltip]="t('profile.update_background')"
+          class="profile-file-upload">
           🌅
         </label>
       </div>
     </div>
-    <img
-      *ngIf="user.backgroundUrl"
-      class="backgroundUrl"
-      [src]="user.backgroundUrl"
-    />
+    <img *ngIf="user.backgroundUrl" class="backgroundUrl" [src]="user.backgroundUrl" />
 
     <div class="flex space-between">
-      <input
-        id="file-upload-avatarUrl"
-        type="file"
-        accept="image/*"
-        (change)="onFileChange($event, 'avatarUrl')"
-      />
+      <input id="file-upload-avatarUrl" type="file" accept="image/*" (change)="onFileChange($event, 'avatarUrl')" />
 
-      <input
-        id="file-upload-backgroundUrl"
-        type="file"
-        accept="image/*"
-        (change)="onFileChange($event, 'backgroundUrl')"
-      />
+      <input id="file-upload-backgroundUrl" type="file" accept="image/*"
+        (change)="onFileChange($event, 'backgroundUrl')" />
     </div>
     <h2>
       {{ user.username }}
@@ -51,20 +30,10 @@
   <div *ngIf="user$ | async as user">
     <h3>
       {{ t('profile.about') }}
-      <button
-        *ngIf="isLoggedUser && !editAbout"
-        mat-button
-        color="primary"
-        (click)="editAbout = true"
-      >
+      <button *ngIf="isLoggedUser && !editAbout" mat-button color="primary" (click)="editAbout = true">
         {{ t('profile.edit') }}
       </button>
-      <button
-        *ngIf="isLoggedUser && editAbout"
-        mat-raised-button
-        color="primary"
-        (click)="updateAbout(user)"
-      >
+      <button *ngIf="isLoggedUser && editAbout" mat-raised-button color="primary" (click)="updateAbout(user)">
         {{ t('profile.save') }}
       </button>
     </h3>
@@ -72,12 +41,8 @@
       <div class="editor">
         <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
         </ngx-editor-menu>
-        <ngx-editor
-          [editor]="editor"
-          [(ngModel)]="user.about"
-          [outputFormat]="'html'"
-          [placeholder]="t('profile.about_placeholder')"
-        ></ngx-editor>
+        <ngx-editor [editor]="editor" [(ngModel)]="user.about" [outputFormat]="'html'"
+          [placeholder]="t('profile.about_placeholder')"></ngx-editor>
       </div>
     </div>
     <div *ngIf="!editAbout">
@@ -87,23 +52,14 @@
 
   <ng-container *ngIf="user$ | async as user">
     <mat-tab-group animationDuration="1000ms">
-      <mat-tab [label]="t('profile.activity')">
-        <app-activities [activities]="activities$ | async"></app-activities>
-      </mat-tab>
-
-      <mat-tab [label]="t('profile.pictures')">
-        <app-posts
-          [posts]="pictures$ | async"
-          [author]="user._id"
-          [isPicture]="true"
-        ></app-posts>
+      <mat-tab [label]="t('profile.medias')">
+        <app-posts [posts]="medias$ | async" [author]="user._id" [isPicture]="true"></app-posts>
       </mat-tab>
       <mat-tab [label]="t('profile.writings')">
-        <app-posts
-          [posts]="writings$ | async"
-          [author]="user._id"
-          [isPicture]="false"
-        ></app-posts>
+        <app-posts [posts]="writings$ | async" [author]="user._id" [isPicture]="false"></app-posts>
+      </mat-tab>
+      <mat-tab [label]="t('profile.activity')">
+        <app-activities [activities]="activities$ | async"></app-activities>
       </mat-tab>
     </mat-tab-group>
   </ng-container>

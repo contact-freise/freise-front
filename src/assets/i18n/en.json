@@ -47,7 +47,7 @@
     "post_placeholder": "What's new?",
     "post_submit": "Post",
     "post_title": "Title (optional)",
-    "add_picture": "Add a picture"
+    "add_media": "Attach a photo / video / audio"
   },
   "post": {
     "like": "👍",
@@ -62,7 +62,7 @@
     "save": "Save",
     "update_avatar": "Update avatar",
     "update_background": "Update cover",
-    "pictures": "Pictures",
+    "medias": "Medias",
     "writings": "Writings"
   },
   "activity": {

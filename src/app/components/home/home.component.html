@@ -1,52 +1,24 @@
 <ng-container *transloco="let t">
   <div *ngIf="user$ | async as user" class="flex m-t-16">
-    <img
-      (click)="userClick(user)"
-      class="pp m-r-16"
-      [src]="user?.avatarUrl"
-      width="60"
-      height="60"
-    />
+    <img (click)="userClick(user)" class="pp m-r-16" [src]="user?.avatarUrl" width="60" height="60" />
     <strong>Hello {{ user.username }} !</strong>
   </div>
   <mat-card *ngIf="user$ | async as user" class="m-t-8">
-    <input
-      class="title"
-      [(ngModel)]="post.title"
-      placeholder="{{ t('home.post_title') }}"
-    />
+    <input class="title" [(ngModel)]="post.title" placeholder="{{ t('home.post_title') }}" />
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-    <ngx-editor
-      [editor]="editor"
-      [(ngModel)]="post.content"
-      [outputFormat]="'html'"
-      [placeholder]="t('home.post_placeholder')"
-    ></ngx-editor>
+    <ngx-editor [editor]="editor" [(ngModel)]="post.content" [outputFormat]="'html'"
+      [placeholder]="t('home.post_placeholder')"></ngx-editor>
     <div class="flex m-t-8">
-      <input
-        id="home-file-upload"
-        type="file"
-        accept="image/*"
-        (change)="onFileSelected($event)"
-      />
-      <div *ngIf="imagePreview" class="preview-container">
-        <img [src]="imagePreview" />
+      <input id="home-file-upload" type="file" accept="video/*,image/*,audio/*" (change)="onFileSelected($event)" />
+      <div *ngIf="mediaPreview" class="preview-container">
+        <img [src]="mediaPreview" />
       </div>
-      <label
-        for="home-file-upload"
-        class="home-file-upload"
-        [matTooltip]="t('home.add_picture')"
-      >
-        🌅
+      <label for="home-file-upload" class="home-file-upload" [matTooltip]="t('home.add_media')">
+        📎
       </label>
-      <button
-        [disabled]="
+      <button [disabled]="
           isLoading || (!file && !post.content) || post.content === '<p></p>'
-        "
-        mat-flat-button
-        color="primary"
-        (click)="createPost(user, post)"
-      >
+        " mat-flat-button color="primary" (click)="createPost(user, post)">
         {{ t('home.post_submit') }}
       </button>
     </div>

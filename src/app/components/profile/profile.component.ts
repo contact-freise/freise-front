@@ -19,7 +19,7 @@ import { ActivitiesComponent } from '../_lib/actvities/activities.component';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  imports: [ 
+  imports: [
     ...APP_IMPORTS || [],
     ActivitiesComponent,
     PostsComponent,
@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   user$: Observable<User>;
   activities$: Observable<PaginatedResult<Activity>>;
-  pictures$: Observable<PaginatedResult<Post>>;
+  medias$: Observable<PaginatedResult<Post>>;
   writings$: Observable<PaginatedResult<Post>>;
 
   editAbout = false;
@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private _activityService: ActivityService,
     private _postService: PostService,
     private _activatedRoute: ActivatedRoute,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._activatedRoute.params.subscribe((params: Params) => {
@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.user$ = of(user);
         });
       this.activities$ = this._activityService.getByUserId(this.userId);
-      this.pictures$ = this._postService.getByAuthor(this.userId, true);
+      this.medias$ = this._postService.getByAuthor(this.userId, true);
       this.writings$ = this._postService.getByAuthor(this.userId, false);
     });
   }

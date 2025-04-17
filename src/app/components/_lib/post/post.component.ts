@@ -7,6 +7,7 @@ import { AuthService } from '../../../services/auth.service';
 import * as _ from 'lodash';
 import { ActivityService } from '../../../services/activity.service';
 import { CommentsComponent } from '../comments/comments.component';
+import { MediaType } from '../../../models/_utils/media-type';
 
 @Component({
   selector: 'app-post',
@@ -27,14 +28,17 @@ export class PostComponent implements OnInit {
   commentsCount: number = 0;
   seeComments = false;
 
+  mediaType: MediaType;
+
   @Input() post: Post = new Post();
   @Input() activityType: string;
+  @Input() isGalleryView: boolean = false;
 
   constructor(
     private _postService: PostService,
     private _authService: AuthService,
     private _activityService: ActivityService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.likesCount = this.post.likesCount;
@@ -46,6 +50,25 @@ export class PostComponent implements OnInit {
       this.alreadyDisliked =
         _.intersection(this.post.dislikes, user.dislikes).length > 0;
     });
+
+    this._getMediaType();
+  }
+
+  private _getMediaType() {
+    let mediaExtension = this.post.mediaUrl?.split('.').pop();
+    if (!mediaExtension) {
+      return;
+    }
+    mediaExtension = mediaExtension.toLowerCase().replace('?alt=media', '');
+    if (mediaExtension === 'mp4' || mediaExtension === 'webm') {
+      this.mediaType = 'video';
+    }
+    if (mediaExtension === 'mp3' || mediaExtension === 'wav') {
+      this.mediaType = 'audio';
+    }
+    if (mediaExtension === 'jpg' || mediaExtension === 'png' || mediaExtension === 'jpeg' || mediaExtension === 'gif') {
+      this.mediaType = 'image';
+    }
   }
 
   likeDislikeChanged(event) {
