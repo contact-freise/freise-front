@@ -8,6 +8,8 @@ import * as _ from 'lodash';
 import { ActivityService } from '../../../services/activity.service';
 import { CommentsComponent } from '../comments/comments.component';
 import { MediaType } from '../../../models/_utils/media-type';
+import { MatDialog } from '@angular/material/dialog';
+import { MediaPreviewComponent } from '../media-preview/media-preview.component';
 
 @Component({
   selector: 'app-post',
@@ -16,6 +18,7 @@ import { MediaType } from '../../../models/_utils/media-type';
   imports: [
     ...APP_IMPORTS || [],
     CommentsComponent,
+    MediaPreviewComponent,
   ],
 })
 export class PostComponent implements OnInit {
@@ -38,6 +41,7 @@ export class PostComponent implements OnInit {
     private _postService: PostService,
     private _authService: AuthService,
     private _activityService: ActivityService,
+    private _dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -69,6 +73,13 @@ export class PostComponent implements OnInit {
     if (mediaExtension === 'jpg' || mediaExtension === 'png' || mediaExtension === 'jpeg' || mediaExtension === 'gif') {
       this.mediaType = 'image';
     }
+  }
+
+  openMediaPreview(mediaUrl: string, mediaType: string): void {
+    this._dialog.open(MediaPreviewComponent, {
+      data: { mediaUrl, mediaType },
+      panelClass: 'fullscreen-dialog',
+    });
   }
 
   likeDislikeChanged(event) {

@@ -24,7 +24,7 @@ export class PostsComponent {
     limit: SCROLL_LIMIT,
   };
   @Input() author: string;
-  @Input() isPicture: boolean;
+  @Input() withMedia: boolean;
 
   limit = SCROLL_LIMIT;
   throttle = 300;
@@ -34,7 +34,7 @@ export class PostsComponent {
 
   isLoading = false;
 
-  constructor(private _postSevice: PostService) {}
+  constructor(private _postSevice: PostService) { }
 
   onScroll() {
     if (this.isLoading) return;
@@ -43,7 +43,7 @@ export class PostsComponent {
 
     this.isLoading = true;
     this._postSevice
-      .getByAuthor(this.author, this.isPicture, this.posts.page + 1, this.limit)
+      .getByAuthor(this.author, this.withMedia, this.posts.page + 1, this.limit)
       .pipe(
         finalize(() => {
           this.isLoading = false;

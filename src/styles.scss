@@ -39,7 +39,9 @@ $freise-app-theme: mat.define-theme(
 
 html,
 body {
+  background: #161616;
   height: 100%;
+  padding-top: env(safe-area-inset-top);
 }
 
 h1 {

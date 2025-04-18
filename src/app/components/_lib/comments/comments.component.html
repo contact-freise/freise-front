@@ -1,31 +1,50 @@
-<div class="comments-section">
+<div *transloco="let t" class="comments-section">
   <div *ngFor="let comment of comments" class="comment">
-    <div class="flex flex-center">
-      <ng-container *ngIf="isUser(comment.author); else stringAuthor">
-        <img
-          class="pp m-r-16"
-          [src]="comment.author.avatarUrl"
-          width="60"
-          height="60"
-        />
-        {{ comment.author.username }}
-      </ng-container>
-      <ng-template #stringAuthor>
-        {{ comment.author }}
-      </ng-template>
-      <small class="m-l-8">{{ comment.createdAt | dateAgo }}</small>
-    </div>
-    <div class="m-t-4">{{ comment.content }}</div>
+    <mat-card class="comment-card">
+      <div class="comment-header">
+        <div class="author-info">
+          <img
+            *ngIf="isUser(comment.author)"
+            class="avatar"
+            [src]="comment.author.avatarUrl"
+            alt="Author Avatar"
+          />
+          <span class="author-name">
+            <ng-container *ngIf="isUser(comment.author); else stringAuthor">
+              {{ comment.author.username }}
+            </ng-container>
+            <ng-template #stringAuthor>
+              {{ comment.author }}
+            </ng-template>
+          </span>
+        </div>
+        <small class="comment-date">{{ comment.createdAt | dateAgo }}</small>
+      </div>
+      <div class="comment-content">
+        {{ comment.content }}
+      </div>
+    </mat-card>
   </div>
 
-  <form [formGroup]="commentForm" (ngSubmit)="postComment()">
-    <input
-      formControlName="content"
-      ngxMention
-      [mentionConfig]="mentionConfig"
-    />
-    <button *ngIf="commentForm.value.content" type="submit">
-      Post Comment
-    </button>
-  </form>
+  <mat-card class="comment-form-card">
+    <form [formGroup]="commentForm" (ngSubmit)="postComment()" class="comment-form">
+      <mat-form-field appearance="outline" class="comment-input">
+        <mat-label>{{ t('comment.placeholder') }}</mat-label>
+        <input
+          matInput
+          formControlName="content"
+          ngxMention
+          [mentionConfig]="mentionConfig"
+        />
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!commentForm.value.content"
+      >
+        {{ t('comment.submit') }}
+      </button>
+    </form>
+  </mat-card>
 </div>

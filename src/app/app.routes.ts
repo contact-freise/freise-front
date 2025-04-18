@@ -12,7 +12,7 @@ export const routes: Routes = [
   { path: 'browser', redirectTo: '/welcome', pathMatch: 'full' },
   {
     path: 'welcome', component: WelcomeComponent,
-    // canActivate: [WelcomeGuard] 
+    canActivate: [WelcomeGuard] 
   },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },

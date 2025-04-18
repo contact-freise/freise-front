@@ -1,23 +1,27 @@
 <ng-container *transloco="let t">
+  <!-- Toggle View Buttons -->
+  <div class="view-toggle">
+    <mat-button-toggle-group (change)="isGalleryView = !isGalleryView" class="toggle-group"
+      [hideSingleSelectionIndicator]="true">
+      <mat-button-toggle mat-raised-button color="primary" value="gallery" [checked]="isGalleryView">
+        🧱 {{ t('posts.gallery_view') }}
+      </mat-button-toggle>
+      <mat-button-toggle mat-raised-button color="primary" value="list" [checked]="!isGalleryView">
+        📋 {{ t('posts.list_view') }}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
 
-  <mat-button-toggle-group (change)="isGalleryView = ! isGalleryView" class="like m-r-8"
-    [hideSingleSelectionIndicator]="true">
-    <mat-button-toggle mat-raised-button color="primary" value="gallery" [checked]="isGalleryView">
-      🧱
-    </mat-button-toggle>
-    <mat-button-toggle mat-raised-button color="primary" value="list" [checked]="!isGalleryView">
-      📋
-    </mat-button-toggle>
-  </mat-button-toggle-group>
-
+  <!-- Posts Container -->
   <div infiniteScroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollThrottle]="throttle"
-    (scrolled)="onScroll()" [scrollWindow]="true">
-    <div class="m-b-16" [ngClass]="{ 'gallery-container': isGalleryView, 'list-container': !isGalleryView }">
+    (scrolled)="onScroll()" [scrollWindow]="true" class="posts-container">
+    <div class="posts-wrapper" [ngClass]="{ 'gallery-container': isGalleryView, 'list-container': !isGalleryView }">
       <div *ngFor="let post of posts?.data" [ngClass]="{ 'gallery-item': isGalleryView, 'list-item': !isGalleryView }">
-        <app-post *ngIf="post" [post]="post" [isGalleryView]="isGalleryView" class="item"></app-post>
+        <app-post *ngIf="post" [post]="post" [isGalleryView]="withMedia && isGalleryView" class="post-item"></app-post>
       </div>
     </div>
   </div>
 
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <!-- Loading Spinner -->
+  <mat-spinner *ngIf="isLoading" class="loading-spinner"></mat-spinner>
 </ng-container>

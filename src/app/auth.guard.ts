@@ -9,10 +9,11 @@ export class AuthGuard implements CanActivate {
   constructor(
     private _authService: AuthService,
     private _router: Router,
-  ) {}
+  ) { }
 
   canActivate(): boolean {
-    if (this._authService.isLoggedIn()) {
+    const isLoggedIn = this._authService.isLoggedIn();
+    if (isLoggedIn) {
       return true;
     } else {
       this._router.navigate(['/login']);
@@ -28,13 +29,12 @@ export class WelcomeGuard implements CanActivate {
   constructor(
     private _authService: AuthService,
     private _router: Router,
-  ) {}
+  ) { }
 
   canActivate(): boolean {
-    const user = localStorage.getItem('welcomed');
-    if (user) {
-      this._router.navigate(['/login']);
-      return false;
+    const isLoggedIn = this._authService.isLoggedIn();
+    if (isLoggedIn) {
+      this._router.navigate(['/home']);
     }
     return true;
   }

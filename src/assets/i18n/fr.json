@@ -40,19 +40,29 @@
     "password": "Mot de passe",
     "submit": "Connexion à Freise 🚀",
     "forgot_password": "Mot de passe oublié ?",
-    "register": "Pas encore inscrit ? Crée un compte"
+    "register": "Pas encore inscrit ?"
   },
   "home": {
+    "welcome": "Hey",
+    "subtitle": "Bienvenue sur Freise !",
     "activities": "Dernières activités",
     "post_placeholder": "Quoi de neuf ?",
     "post_submit": "Publier",
     "post_title": "Titre (optionnel)",
     "add_media": "Joindre une photo / video / audio"
   },
+  "posts": {
+    "gallery_view": "Gallerie",
+    "list_view": "Liste"
+  },
   "post": {
     "like": "👍",
     "dislike": "👎",
     "comment": "💬"
+  },
+  "comment": {
+    "placeholder": "Écris un commentaire...",
+    "submit": "Envoyer"
   },
   "profile": {
     "activity": "Activité",

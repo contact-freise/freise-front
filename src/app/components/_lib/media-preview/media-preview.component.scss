@@ -1,0 +1,22 @@
+.media-preview-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  height: 100%;
+  width: 100%;
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.media-content img,
+.media-content video {
+  max-width: 100%;
+}

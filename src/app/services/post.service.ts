@@ -15,16 +15,16 @@ export class PostService {
   constructor(
     private _http: HttpClient,
     private _authService: AuthService,
-  ) {}
+  ) { }
 
   getByAuthor(
     author: string,
-    isPicture: boolean,
+    withMedia: boolean,
     page = 1,
     limit = SCROLL_LIMIT,
   ): Observable<PaginatedResult<Post>> {
     return this._http.get<PaginatedResult<Post>>(
-      `${environment.API_URL}/posts/${author}?isPicture=${isPicture}&page=${page}&limit=${limit}`,
+      `${environment.API_URL}/posts/${author}?withMedia=${withMedia}&page=${page}&limit=${limit}`,
       this._authService.getHttpOptions(),
     );
   }

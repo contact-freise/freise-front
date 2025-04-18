@@ -1,17 +1,11 @@
-<nav *transloco="let t" class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">
-    <img
-      src="assets/icons/icon-96x96.png"
-      alt="Logo"
-      width="40"
-      height="40"
-    />
-  </a>
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" *ngIf="!isLoggedIn()">
-        {{ t('app.already_registered') }}
-      </li>
+<nav *transloco="let t" class="navbar">
+  <div class="navbar-container">
+    <a class="navbar-brand" href="/">
+      <img src="assets/icons/icon-96x96.png" alt="Logo" class="navbar-logo" />
+      <span class="navbar-title">Freise</span>
+    </a>
+
+    <ul class="navbar-links">
       <li class="nav-item" *ngIf="!isLoggedIn()">
         <a class="nav-link" routerLink="/login">{{ t('app.login') }}</a>
       </li>
@@ -20,13 +14,8 @@
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">
         <a class="nav-link" [routerLink]="['users', getUserId()]">
-          <img
-            *ngIf="authService.user$ | async as user"
-            class="pp"
-            [src]="user.avatarUrl"
-            width="30"
-            height="30"
-          />
+          <img *ngIf="authService.user$ | async as user" class="navbar-avatar" [src]="user.avatarUrl"
+            alt="User Avatar" />
         </a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">

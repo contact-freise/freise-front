@@ -1,8 +1,8 @@
 {
   "name": "Freise 🍓",
   "short_name": "Freise 🍓",
-  "theme_color": "#b91717e6",
-  "background_color": "#b91717e6",
+  "theme_color": "transparent",
+  "background_color": "transparent",
   "display": "standalone",
   "scope": "./",
   "start_url": "/browser/",

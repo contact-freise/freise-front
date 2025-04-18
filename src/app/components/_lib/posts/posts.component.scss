@@ -1,10 +1,22 @@
+/* General Styles */
+.posts-container {
+  background: rgba(128, 128, 128, 0.1);
+  /* Fond gris/transparent */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.posts-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
 
 .gallery-container {
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  padding: 16px;
 }
 
 .gallery-item {
@@ -14,15 +26,27 @@
 }
 
 .list-container {
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 16px;
 }
 
 .list-item {
-  display: flex;
-  justify-content: flex-start;
   align-items: center;
+}
+
+.view-toggle {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.toggle-group {
+  display: flex;
+  gap: 8px;
+}
+
+.loading-spinner {
+  display: block;
+  margin: 20px auto;
 }
