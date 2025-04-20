@@ -28,10 +28,22 @@
     "subtitle": "But first, let's introduce ourselves 🤝",
     "user": "Username",
     "gender": "Gender",
+    "gender.male": "Male",
+    "gender.female": "Female",
+    "location": "City",
     "dob": "Date of birth",
     "email": "Email",
     "password": "Password",
-    "submit": "Ok, let's go 😎"
+    "submit": "Ok, let's go 😎",
+    "errors": {
+      "username": "Username is required and must be at least 3 characters.",
+      "gender": "Gender is required.",
+      "location": "Please select a valid city.",
+      "dob": "Date of birth is required.",
+      "dobMinor": "You must be at least 18 years old.",
+      "email": "Please enter a valid email address.",
+      "password": "Password is required and must be at least 6 characters."
+    }
   },
   "login": {
     "welcome": "Welcome (back) to Freise 🍓",

@@ -37,7 +37,7 @@ export class PostsComponent {
   constructor(private _postSevice: PostService) { }
 
   onScroll() {
-    if (this.isLoading) return;
+    if (this.isLoading || !this.posts) return;
     if (this.posts.data.length >= this.posts.total && this.posts.total !== 0)
       return;
 

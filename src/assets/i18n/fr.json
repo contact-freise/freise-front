@@ -28,10 +28,22 @@
     "subtitle": "Mais avant toute chose, les présentations ! 🤝",
     "user": "Pseudo",
     "gender": "Genre",
+    "male": "Homme",
+    "female": "Femme",
+    "location": "Ville",
     "dob": "Date de naissance",
     "email": "Email",
     "password": "Mot de passe",
-    "submit": "Allez c'est parti 😎"
+    "submit": "Allez c'est parti 😎",
+    "errors": {
+      "username": "Le nom d'utilisateur est requis et doit comporter au moins 3 caractères.",
+      "gender": "Le genre est requis.",
+      "location": "Veuillez sélectionner une ville valide.",
+      "dob": "La date de naissance est requise.",
+      "dobMinor": "Vous devez avoir au moins 18 ans.",
+      "email": "Veuillez entrer une adresse e-mail valide.",
+      "password": "Le mot de passe est requis et doit comporter au moins 6 caractères."
+    }
   },
   "login": {
     "welcome": "(Re)Bienvenue sur Freise 🍓",

@@ -2,53 +2,26 @@
   <div *ngIf="!isGalleryView && post.title" class="post-title">{{ post.title }}</div>
 
   <div class="post-media">
-    <img
-      *ngIf="post.mediaUrl && mediaType === 'image'"
-      (click)="openMediaPreview(post.mediaUrl, 'image')"
-      [src]="post.mediaUrl"
-      class="mediaUrl"
-      alt="Post Image"
-    />
+    <img *ngIf="post.mediaUrl && mediaType === 'image'" (click)="openMediaPreview(post.mediaUrl, 'image')"
+      [src]="post.mediaUrl" class="mediaUrl" alt="Post Image" />
     <div class="video-container" *ngIf="post.mediaUrl && mediaType === 'video'">
-      <video
-        (click)="openMediaPreview(post.mediaUrl, 'video')"
-        [src]="post.mediaUrl"
-        class="mediaUrl"
-      ></video>
+      <video (click)="openMediaPreview(post.mediaUrl, 'video')" [src]="post.mediaUrl" class="mediaUrl"></video>
       <div class="play-icon">▶</div>
     </div>
-    <audio
-      *ngIf="post.mediaUrl && mediaType === 'audio'"
-      [src]="post.mediaUrl"
-      class="mediaUrl"
-      controls
-    ></audio>
+    <audio *ngIf="post.mediaUrl && mediaType === 'audio'" [src]="post.mediaUrl" class="mediaUrl" controls></audio>
   </div>
 
   <div *ngIf="!isGalleryView && post.content" class="post-content" [innerHTML]="post.content | safeHtml"></div>
 
   <div *ngIf="!isGalleryView && (!activityType || activityType === 'createPost')" class="post-actions">
-    <mat-button-toggle-group
-      (change)="likeDislikeChanged($event)"
-      class="like-toggle-group"
-      [hideSingleSelectionIndicator]="true"
-    >
-      <mat-button-toggle
-        mat-raised-button
-        color="primary"
-        value="like"
-        [checked]="alreadyLiked"
-        [ngClass]="{ 'selected-toggle': alreadyLiked, 'unselected-toggle': !alreadyLiked }"
-      >
+    <mat-button-toggle-group (change)="likeDislikeChanged($event)" class="like-toggle-group"
+      [hideSingleSelectionIndicator]="true">
+      <mat-button-toggle mat-raised-button color="primary" value="like" [checked]="alreadyLiked"
+        [ngClass]="{ 'selected-toggle': alreadyLiked, 'unselected-toggle': !alreadyLiked }">
         {{ likesCount }} {{ t('post.like') }}
       </mat-button-toggle>
-      <mat-button-toggle
-        mat-raised-button
-        color="primary"
-        value="dislike"
-        [checked]="alreadyDisliked"
-        [ngClass]="{ 'selected-toggle': alreadyDisliked, 'unselected-toggle': !alreadyDisliked }"
-      >
+      <mat-button-toggle mat-raised-button color="primary" value="dislike" [checked]="alreadyDisliked"
+        [ngClass]="{ 'selected-toggle': alreadyDisliked, 'unselected-toggle': !alreadyDisliked }">
         {{ dislikesCount }} {{ t('post.dislike') }}
       </mat-button-toggle>
     </mat-button-toggle-group>

@@ -18,7 +18,6 @@ import { MediaPreviewComponent } from '../media-preview/media-preview.component'
   imports: [
     ...APP_IMPORTS || [],
     CommentsComponent,
-    MediaPreviewComponent,
   ],
 })
 export class PostComponent implements OnInit {

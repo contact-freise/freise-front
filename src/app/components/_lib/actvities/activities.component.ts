@@ -41,7 +41,7 @@ export class ActivitiesComponent {
   }
 
   onScroll() {
-    if (this.isLoading) return;
+    if (this.isLoading || !this.activities) return;
     if (
       this.activities.data.length >= this.activities.total &&
       this.activities.total !== 0

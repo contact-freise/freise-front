@@ -19,6 +19,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-magic/ngx-gp-autocomplete": "^2.0.2",
     "@angular/animations": "^19.2.7",
     "@angular/cdk": "^19.2.10",
     "@angular/common": "^19.2.7",
@@ -31,8 +32,10 @@
     "@angular/platform-browser-dynamic": "^19.2.7",
     "@angular/router": "^19.2.7",
     "@angular/service-worker": "^19.2.7",
+    "@googlemaps/js-api-loader": "^1.16.8",
     "@jsverse/transloco": "^7.4.3",
     "@picocss/pico": "^2.0.6",
+    "@types/google.maps": "^3.58.1",
     "angular-mentions": "^1.5.0",
     "emoji-toolkit": "^8.0.0",
     "giphy-api": "^2.0.2",

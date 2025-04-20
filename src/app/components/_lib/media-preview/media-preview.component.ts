@@ -13,7 +13,7 @@ export class MediaPreviewComponent {
   constructor(
     public dialogRef: MatDialogRef<MediaPreviewComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { mediaUrl: string; mediaType: string }
-  ) {}
+  ) { }
 
   close(): void {
     this.dialogRef.close();

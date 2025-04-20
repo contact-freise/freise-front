@@ -4,48 +4,79 @@
     <p class="register-subtitle">{{ t('register.subtitle') }}</p>
   </div>
 
-  <form (ngSubmit)="onSubmit()" class="register-form">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
     <mat-card class="form-card">
       <div class="form-group">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>{{ t('register.user') }}</mat-label>
-          <input matInput type="text" id="username" [(ngModel)]="user.username" name="username" required />
+          <input matInput formControlName="username" type="text" id="username" required />
+          <mat-error *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+            {{ t('register.errors.username') }}
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div class="form-group">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>{{ t('register.gender') }}</mat-label>
-          <mat-select id="gender" [(ngModel)]="user.gender" name="gender" required>
+          <mat-select formControlName="gender" id="gender" required>
             <mat-option value="Male">{{ t('register.male') }}</mat-option>
             <mat-option value="Female">{{ t('register.female') }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched">
+            {{ t('register.errors.gender') }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ t('register.location') }}</mat-label>
+          <input matInput ngx-gp-autocomplete [options]="googlePlacesOptions"
+            (onAddressChange)="handleAddressChange($event)" formControlName="location" required />
+          <mat-error *ngIf="registerForm.get('location')?.invalid && registerForm.get('location')?.touched">
+            {{ t('register.errors.location') }}
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div class="form-group">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>{{ t('register.dob') }}</mat-label>
-          <input matInput type="date" id="dob" [(ngModel)]="user.dob" name="dob" required />
+          <input matInput [placeholder]="'dd/mm/yyyy'" [matDatepicker]="picker" formControlName="dob" [max]="maxDate" required />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="registerForm.get('dob')?.hasError('required')">
+            {{ t('register.errors.dob') }}
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('dob')?.hasError('minor')">
+            {{ t('register.errors.dobMinor') }}
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div class="form-group">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>{{ t('register.email') }}</mat-label>
-          <input matInput type="email" id="email" [(ngModel)]="user.email" name="email" required />
+          <input matInput formControlName="email" type="email" id="email" required />
+          <mat-error *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+            {{ t('register.errors.email') }}
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div class="form-group">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>{{ t('register.password') }}</mat-label>
-          <input matInput type="password" id="password" [(ngModel)]="user.password" name="password" required />
+          <input matInput formControlName="password" type="password" id="password" required />
+          <mat-error *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+            {{ t('register.errors.password') }}
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div class="form-actions">
-        <button mat-raised-button color="primary" type="submit" class="submit-button">
+        <button mat-raised-button color="primary" type="submit" class="submit-button" [disabled]="registerForm.invalid">
           {{ t('register.submit') }}
         </button>
       </div>
